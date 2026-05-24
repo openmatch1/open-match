@@ -327,16 +327,78 @@ function Premium() {
 }
 
 function MyProfile() {
-  return <section>
-    <h1>My Profile</h1>
-    <div className="settingsPanel">
-      <label>Name</label><input defaultValue="Anthony" />
-      <label>Age</label><input defaultValue="27" />
-      <label>Relationship Goal</label><select><option>Serious relationship</option><option>Marriage-minded</option><option>Casual dating</option></select>
-      <label>Bio</label><textarea defaultValue="Ambitious, loyal, building something real. Looking for chemistry, not a copy of myself." />
-      <button className="primary">Save Profile</button>
-    </div>
-  </section>
+const [name, setName] = useState("Anthony")
+const [age, setAge] = useState(27)
+const [goal, setGoal] = useState("Serious relationship")
+const [bio, setBio] = useState(
+"Ambitious, loyal, building something real. Looking for chemistry, not a copy of myself."
+)
+
+async function saveProfile() {
+const { error } = await supabase
+.from("profiles")
+.insert([
+{
+name,
+age,
+bio,
+city: "Orlando",
+email: "anthony@test.com",
+interests: ["business", "fitness", "travel"]
+}
+])
+
+if (error) {
+alert(error.message)
+} else {
+alert("Profile saved successfully")
+}
+}
+
+return (
+<section>
+<h1>My Profile</h1>
+
+<div className="settingsPanel">
+
+<label>Name</label>
+<input
+value={name}
+onChange={(e) => setName(e.target.value)}
+/>
+
+<label>Age</label>
+<input
+value={age}
+onChange={(e) => setAge(e.target.value)}
+/>
+
+<label>Relationship Goal</label>
+<select
+value={goal}
+onChange={(e) => setGoal(e.target.value)}
+>
+<option>Serious relationship</option>
+<option>Marriage-minded</option>
+<option>Casual dating</option>
+</select>
+
+<label>Bio</label>
+<textarea
+value={bio}
+onChange={(e) => setBio(e.target.value)}
+/>
+
+<button
+className="primary"
+onClick={saveProfile}
+>
+Save Profile
+</button>
+
+</div>
+</section>
+)
 }
 
 function SettingsScreen() {
