@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "jsonwebtoken": "latest",
+    "stripe": "latest",
+    "uuid": "latest"
+  },
+  "name": "open-match-server"
+}
