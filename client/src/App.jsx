@@ -417,10 +417,86 @@ function SettingsScreen() {
     </div>
   </section>
 }
+function AuthScreen({ setUser }) {
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+
+async function signUp() {
+const { data, error } = await supabase.auth.signUp({
+email,
+password
+});
+
+if (error) {
+alert(error.message);
+} else {
+alert("Account created successfully");
+setUser(data.user);
+}
+}
+
+async function signIn() {
+const { data, error } = await supabase.auth.signInWithPassword({
+email,
+password
+});
+
+if (error) {
+alert(error.message);
+} else {
+alert("Logged in successfully");
+setUser(data.user);
+}
+}
+
+return (
+<section>
+<h1>Login / Sign Up</h1>
+
+<div className="settingsPanel">
+
+<label>Email</label>
+<input
+value={email}
+onChange={(e) => setEmail(e.target.value)}
+/>
+
+<label>Password</label>
+<input
+type="password"
+value={password}
+onChange={(e) => setPassword(e.target.value)}
+/>
+
+<button
+className="primary"
+onClick={signIn}
+>
+Login
+</button>
+
+<button onClick={signUp}>
+Create Account
+</button>
+
+</div>
+</section>
+);
+}
 
 function Root() {
-  const [entered, setEntered] = useState(false);
-  return entered ? <AppShell/> : <Landing enter={()=>setEntered(true)}/>;
+const [entered, setEntered] = useState(false);
+const [user, setUser] = useState(null);
+
+if (!entered) {
+return <Landing enter={() => setEntered(true)} />;
+}
+
+if (!user) {
+return <AuthScreen setUser={setUser} />;
+}
+
+return <AppShell />;
 }
 
 createRoot(document.getElementById("root")).render(<Root />);
