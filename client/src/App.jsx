@@ -178,11 +178,27 @@ function AppShell() {
 
   const profile = profiles[current % profiles.length];
 
-  function like(superLike=false) {
-    const shouldMatch = superLike || profile.openChemistry > 90;
-    if (shouldMatch && !matches.find(m => m.id === profile.id)) setMatches([profile, ...matches]);
-    setCurrent(current + 1);
-  }
+async function like(superLike=false) {
+
+const shouldMatch =
+superLike || profile.openChemistry > 90;
+
+if (
+shouldMatch &&
+!matches.find((m) => m.id === profile.id)
+) {
+setMatches([profile, ...matches]);
+}
+
+await supabase.from("likes").insert([
+{
+liker_email: "anthony@test.com",
+liked_email: profile.name + "@openmatch.ai"
+}
+]);
+
+setCurrent(current + 1);
+} 
 
   function pass() {
     setCurrent(current + 1);
