@@ -6,9 +6,12 @@ import {
   MapPin, Star, Zap, User, Settings, Send, Flame, Eye, Brain, Lock
 } from "lucide-react";
 import "./styles.css";
-
+import { createClient } from '@supabase/supabase-js'
 const API_URL = "http://localhost:5050";
-
+const supabase = createClient(
+import.meta.env.VITE_SUPABASE_URL,
+import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+)
 const seedProfiles = [
   {
     id: "p1",
