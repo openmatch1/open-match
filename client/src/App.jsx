@@ -340,7 +340,7 @@ const [bio, setBio] = useState(
 async function saveProfile() {
 const { error } = await supabase
 .from("profiles")
-.insert([
+.upsert([
 {
 name,
 age,
@@ -349,7 +349,7 @@ city: "Orlando",
 email: "anthony@test.com",
 interests: ["business", "fitness", "travel"]
 }
-])
+], { onConflict: "email" })
 
 if (error) {
 alert(error.message)
