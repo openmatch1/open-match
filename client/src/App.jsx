@@ -397,6 +397,7 @@ function Discover({ profile, like, pass }) {
     </div>
 
     <div className="swipeWrap">
+      <div className="swipeCard">
       <img
 src={profile.photos[0]}
 alt={profile.name}
@@ -407,7 +408,6 @@ objectFit: "cover",
 borderRadius: "24px"
 }}
 />
-        <img src={profile.photos[0]} />
         <div className="swipeInfo">
           <h2>{profile.name}, {profile.age}</h2>
           <p><MapPin size={15}/> {profile.city} • {profile.distance}</p>
