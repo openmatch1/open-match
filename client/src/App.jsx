@@ -884,7 +884,7 @@ const { error } = await supabase
 .from("messages")
 .insert({
 sender_email: user?.email,
-receiver_email: "real-0",
+receiver_email: matches[0]?.user_two || "no-match",
 message: text
 });
 
