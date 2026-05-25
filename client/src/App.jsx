@@ -596,7 +596,7 @@ setText("");
     </div>
     <div className="composer">
       <input value={text} onChange={e=>setText(e.target.value)} placeholder="Write a message..." />
-      <button onClick={send}><Send/></button>
+      <button onClick={sendMessage}><Send/></button>
     </div>
     <div className="promptBox">
       <strong>AI Icebreaker:</strong> Ask something emotionally specific, not boring. Example:
