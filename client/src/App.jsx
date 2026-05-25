@@ -660,7 +660,31 @@ const [bio, setBio] = useState(
 "Ambitious, loyal, building something real. Looking for chemistry, not a copy of myself."
 )
 const [avatar, setAvatar] = useState("")
+const uploadPhoto = async (e) => {
+const file = e.target.files[0];
 
+if (!file) return;
+
+const fileName = `${Date.now()}-${file.name}`;
+
+const { error } = await supabase.storage
+.from("profile-photos")
+.upload(fileName, file);
+
+if (error) {
+console.log(error);
+alert("Upload failed");
+return;
+}
+
+const { data } = supabase.storage
+.from("profile-photos")
+.getPublicUrl(fileName);
+
+setAvatar(data.publicUrl);
+
+alert("Photo uploaded");
+};
 
 async function saveProfile() {
 const { error } = await supabase
