@@ -760,9 +760,7 @@ onChange={(e) => setGoal(e.target.value)}
 value={bio}
 onChange={(e) => setBio(e.target.value)}
 />
-
-}}
-/>
+  
 <button
 className="primary"
 onClick={saveProfile}
