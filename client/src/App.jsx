@@ -270,7 +270,7 @@ setMessages((current) => [
 ...current,
 {
 from:
-msg.sender_email === "anthony@test.com"
+msg.sender_email === user?.email
 ? "me"
 : "them",
 text: msg.message
