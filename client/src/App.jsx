@@ -539,7 +539,7 @@ return;
 }
 
 const { error } = await supabase.from("likes").insert({
-liker_email: "test-user-1",
+liker_email: user?.email,
 liked_email: likedUser.email || likedUser.id || likedUser.name
 });
 
@@ -555,12 +555,12 @@ const { data: existingLike } = await supabase
 "liker_email",
 likedUser.email || likedUser.id || likedUser.name
 )
-.eq("liked_email", "test-user-1")
+.eq("liked_email", user?.email)
 .single();
 
 if (existingLike) {
 await supabase.from("matches").insert({
-user1_id: "test-user-1",
+user1_id: user?.email,
 user2_id: likedUser.email || likedUser.id || likedUser.name
 });
 
