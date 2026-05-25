@@ -228,8 +228,7 @@ loadMessages();
   const [current, setCurrent] = useState(0);
   const [matches, setMatches] = useState([seedProfiles[1]]);
   const [chatText, setChatText] = useState("");
-  const [messages, setMessages] = useState([]);
-
+  
 useEffect(() => {
 
 async function loadMessages() {
