@@ -576,7 +576,7 @@ and that’s actually interesting.”
 
 <button
 className="yes"
-onClick={() => like(profile);
+onClick={() => like(profile)}
 >
 <Heart />
 </button>
