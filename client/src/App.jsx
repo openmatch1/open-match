@@ -696,7 +696,7 @@ age,
 bio,
 avatar,
 city: "Orlando",
-email: "anthony@test.com",
+email: user?.email,
 interests: ["business", "fitness", "travel"]
 }
 ], { onConflict: "email" })
