@@ -199,6 +199,35 @@ setMessages(formatted);
 }
 
 loadMessages();
+const channel = supabase
+.channel("messages-live")
+.on(
+"postgres_changes",
+{
+event: "INSERT",
+schema: "public",
+table: "messages"
+},
+(payload) => {
+const msg = payload.new;
+
+setMessages((current) => [
+...current,
+{
+from:
+msg.sender_email === "anthony@test.com"
+? "me"
+: "them",
+text: msg.message
+}
+]);
+}
+)
+.subscribe();
+
+return () => {
+supabase.removeChannel(channel);
+};
 
 }, []);
   const [coachText, setCoachText] = useState("");
