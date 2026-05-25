@@ -498,13 +498,14 @@ interests: e.target.value
 }
 />
 
+
 <input
-placeholder="Photo URL"
-value={onboarding.photo}
+type="file"
+accept="image/*"
 onChange={(e) =>
 setOnboarding({
 ...onboarding,
-photo: e.target.value
+photo: e.target.files[0]
 })
 }
 />
