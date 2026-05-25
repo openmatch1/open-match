@@ -170,10 +170,10 @@ function Plan({ name, price, perks, hot }) {
 
 function AppShell({ user }) {
  const [screen, setScreen] = useState("onboarding");
-  const [profile, setProfile] = useState(null);
+const [profiles, setProfiles] = useState(seedProfiles);
   const [messages, setMessages] = useState([]);
   const [profileIndex, setProfileIndex] = useState(0);
-const [profile, setProfile] = useState(seedProfiles[0]);
+const [profile, setProfile] = useState(null);
 const [showMatch, setShowMatch] = useState(false);
   const [onboarding, setOnboarding] = useState({
 name: "",
