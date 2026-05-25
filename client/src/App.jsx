@@ -242,7 +242,7 @@ if (data) {
 
 const formatted = data.map((msg) => ({
 from:
-msg.sender_email === "anthony@test.com"
+msg.sender_email === user?.email
 ? "me"
 : "them",
 
@@ -586,7 +586,7 @@ function Matches({ matches, openChat }) {
   </section>
 }
 
-function Chat({ messages, text, setText, send }) {
+function Chat({ messages, setMessages, text, setText, user }) {
   const sendMessage = async () => {
 if (!text.trim()) return;
 
