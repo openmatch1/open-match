@@ -521,7 +521,6 @@ return;
 }
 
 const { error } = await supabase.from("likes").insert({
-const { error } = await supabase.from("likes").insert({
 liker_email: "test-user-1",
 liked_email: likedUser.email || likedUser.id || likedUser.name
 });
