@@ -168,7 +168,7 @@ function Plan({ name, price, perks, hot }) {
 
 function AppShell() {
   const [screen, setScreen] = useState("discover");
-  const [profiles, setProfiles] = useState([]);
+  const [profiles, setProfiles] = useState(seedProfiles);
   useEffect(() => {
 
 async function loadProfiles() {
