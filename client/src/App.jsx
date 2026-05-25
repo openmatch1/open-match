@@ -236,15 +236,26 @@ setProfiles(formatted);
 
 loadProfiles();
 loadMessages();    
-
+loadMatches();
 }, []);
 
   const [current, setCurrent] = useState(0);
-  const [matches, setMatches] = useState([seedProfiles[1]]);
+  const [matches, setMatches] = useState([]);
   const [chatText, setChatText] = useState("");
   
 useEffect(() => {
+async function loadMatches() {
+const myEmail = user?.email || "anthony@test.com";
 
+const { data } = await supabase
+.from("matches")
+.select("*")
+.or(`user_one.eq.${myEmail},user_two.eq.${myEmail}`);
+
+if (data) {
+setMatches(data);
+}
+}
 async function loadMessages() {
 
 const { data } = await supabase
