@@ -591,7 +591,16 @@ and that’s actually interesting.”
 </div>
 
 <div className="actions">
-<button className="no" onClick={pass}>
+<button
+className="no"
+onClick={() => {
+setDragX(-220);
+setTimeout(() => {
+pass();
+setDragX(0);
+}, 220);
+}}
+>
 <X/>
 </button>
 
@@ -601,8 +610,16 @@ and that’s actually interesting.”
 
 <button
 className="yes"
-onClick={() => like(profile)}
+onClick={() => {
+setDragX(220);
+
+setTimeout(() => {
+like(profile);
+setDragX(0);
+}, 220);
+}}
 >
+
 <Heart />
 </button>
 </div>
