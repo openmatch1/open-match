@@ -414,7 +414,7 @@ const photo =
 profile.photos?.[0] ||
 "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80";
 const [dragX, setDragX] = useState(0);
-
+const [leaving, setLeaving] = useState(null);
 const handleDragStart = (e) => {
 const startX = e.clientX || e.touches?.[0]?.clientX;
 
@@ -427,10 +427,29 @@ setDragX(currentX - startX);
 
 const end = () => {
 if (dragX > 120) {
+setLeaving("right");
+setTimeout(() => {
 handleLike(profile);
+setLeaving(null);
+setDragX(0);
+}, 250);
 } else if (dragX < -120) {
+setLeaving("left");
+setTimeout(() => {
 pass();
+setLeaving(null);
+setDragX(0);
+}, 250);
+} else {
+setDragX(0);
 }
+
+window.removeEventListener("mousemove", move);
+window.removeEventListener("mouseup", end);
+window.removeEventListener("touchmove", move);
+window.removeEventListener("touchend", end);
+};
+
 
 setDragX(0);
 
@@ -472,8 +491,14 @@ height: "620px",
 borderRadius: "24px",
 overflow: "hidden",
 position: "relative",
-transform: `translateX(${dragX}px) rotate(${dragX / 20}deg)`,
-transition: dragX === 0 ? "0.3s ease" : "none",  
+transform:
+leaving === "right"
+? "translateX(1200px) rotate(35deg)"
+: leaving === "left"
+? "translateX(-1200px) rotate(-35deg)"
+: `translateX(${dragX}px) rotate(${dragX / 20}deg)`,
+
+transition: "0.25s ease",
 }}
 onMouseDown={handleDragStart}
 onTouchStart={handleDragStart}  
