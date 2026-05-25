@@ -192,9 +192,7 @@ photos: p.avatar
 : ["https://images.unsplash.com/photo-1494790108377-be9c29b29330"],
 bio: p.bio || "",
 prompts: [],
-interests: Array.isArray(p.interests)
-? p.interests
-: [],
+interests: Array.isArray(p.interests) ? p.interests : [],
 openChemistry: 95,
 sharedInterestScore: 50,
 aiReason: "AI generated compatibility."
