@@ -438,7 +438,14 @@ finish={() => setScreen("discover")}
 )}
         {screen === "discover" && <Discover profile={profile} like={like} pass={pass}/>}
         {screen === "matches" && <Matches matches={matches} openChat={()=>setScreen("chat")}/>}
-        {screen === "chat" && <Chat messages={messages} text={chatText} setText={setChatText} send={sendMessage}/>}
+        <Chat
+messages={messages}
+setMessages={setMessages}
+text={chatText}
+setText={setChatText}
+user={user}
+matches={matches}
+/>
         {screen === "coach" && <Coach coachText={coachText} setCoachText={setCoachText} generateCoach={generateCoach} coachAnswer={coachAnswer}/>}
         {screen === "premium" && <Premium/>}
         {screen === "profile" && <MyProfile user={user} />}
@@ -867,7 +874,7 @@ function Matches({ matches, openChat }) {
   </section>
 }
 
-function Chat({ messages, setMessages, text, setText, user }) {
+function Chat({ messages, setMessages, text, setText, user, matches }) {
   const sendMessage = async () => {
 if (!text.trim()) return;
 
