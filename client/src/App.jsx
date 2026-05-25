@@ -178,7 +178,7 @@ function AppShell() {
 
   const profile = profiles[current % profiles.length];
 
-sync function like(superLike=false) {
+async function like(superLike=false) {
 
 const shouldMatch =
 superLike || profile.openChemistry > 90;
