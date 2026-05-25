@@ -106,7 +106,9 @@ function Landing({ enter }) {
             because attraction is not always about liking the same movies, gyms, or restaurants.
           </p>
           <div className="heroActions">
-            <button className="primary" onClick={enter}>Enter Open Match</button>
+            <button className="primary" onClick={enter}>
+Create Profile
+</button>
             <button className="ghost">View Demo</button>
           </div>
           <div className="metrics">
