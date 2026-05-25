@@ -180,7 +180,7 @@ const { data } = await supabase
 if (data) {
 const formatted = data.map((m) => ({
 from:
-m.sender_email === "test-user-1"
+m.sender_email === user?.email
 ? "me"
 : "them",
 text: m.message
@@ -593,7 +593,7 @@ if (!text.trim()) return;
 const { error } = await supabase
 .from("messages")
 .insert({
-sender_email: "test-user-1",
+sender_email: user?.email,
 receiver_email: "real-0",
 message: text
 });
