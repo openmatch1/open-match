@@ -437,7 +437,8 @@ finish={() => setScreen("discover")}
 )}
         {screen === "discover" && <Discover profile={profile} like={like} pass={pass}/>}
         {screen === "matches" && <Matches matches={matches} openChat={()=>setScreen("chat")}/>}
-        <Chat
+   {screen === "chat" && (
+<Chat
 messages={messages}
 setMessages={setMessages}
 text={chatText}
@@ -445,6 +446,8 @@ setText={setChatText}
 user={user}
 matches={matches}
 />
+)}
+     
         {screen === "coach" && <Coach coachText={coachText} setCoachText={setCoachText} generateCoach={generateCoach} coachAnswer={coachAnswer}/>}
         {screen === "premium" && <Premium/>}
         {screen === "profile" && <MyProfile user={user} />}
