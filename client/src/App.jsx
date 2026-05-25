@@ -856,13 +856,11 @@ function Matches({ matches, openChat }) {
     <p>People who matched with your vibe, not just your hobbies.</p>
     <div className="matchGrid">
       {matches.map(m => <div className="matchCard" key={m.id}>
-        <img src={m.photos[0]} />
-        <h3>{m.name}, {m.age}</h3>
-        <p>{m.city}</p>
-        <p>{m.openChemistry}% Open Chemistry</p>
-        <button onClick={openChat}>Message</button>
-      </div>)}
-    </div>
+<h3>{m.user_two}</h3>
+<p>Matched user</p>
+<p>Open Chemistry connection</p>
+<button onClick={openChat}>Message</button>
+</div>
   </section>
 }
 
