@@ -1111,6 +1111,7 @@ if (!entered) {
 return <Landing enter={() => {
 setEntered(true);
 }} />;
+}
 if (!user) {
 return <AuthScreen setUser={setUser} />;
 }
