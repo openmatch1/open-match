@@ -495,8 +495,11 @@ and that’s actually interesting.”
 <Star/>
 </button>
 
-<button className="yes" onClick={() => like(false)}>
-<Heart/>
+<button
+className="yes"
+onClick={() => handleLike(profile)}
+>
+<Heart />
 </button>
 </div>
 
@@ -507,6 +510,31 @@ and that’s actually interesting.”
 </section>
 );
 }
+const currentUser = {
+id: "00000000-0000-0000-0000-000000000001"
+};
+
+const handleLike = async (likedUser) => {
+if (!likedUser?.id) {
+alert("No profile selected");
+return;
+}
+
+const { error } = await supabase.from("likes").insert({
+liker_id: currentUser.id,
+liked_id: likedUser.id,
+type: "like"
+});
+
+if (error) {
+console.error("Like error:", error);
+alert("Like did not save");
+return;
+}
+
+alert("Like saved");
+};
+
 
 function Matches({ matches, openChat }) {
   return <section>
