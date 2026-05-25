@@ -218,8 +218,8 @@ city: p.city || "Unknown",
 distance: "5 miles away",
 vibe: "Real user",
 intent: "Relationship",
-photos: p.avatar && p.avatar.startsWith("http")
-? [p.avatar]
+photos: p.photo && p.photo.startsWith("http")
+? [p.photo]
 : ["https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80"],
 bio: p.bio || "",
 prompts: [],
