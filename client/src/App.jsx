@@ -525,8 +525,6 @@ liker_email: "test-user-1",
 liked_email: likedUser.email || likedUser.id || likedUser.name
 });
 
-});
-
 if (error) {
 console.error("Like error:", error);
 alert("Like did not save");
