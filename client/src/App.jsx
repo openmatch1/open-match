@@ -235,11 +235,27 @@ setCurrent(current + 1);
     setCurrent(current + 1);
   }
 
-  function sendMessage() {
-    if (!chatText.trim()) return;
-    setMessages([...messages, { from: "me", text: chatText }]);
-    setChatText("");
-  }
+  async function sendMessage() {
+
+if (!chatText.trim()) return;
+
+const newMessage = {
+from: "me",
+text: chatText
+};
+
+setMessages([...messages, newMessage]);
+
+await supabase.from("messages").insert([
+{
+sender_email: "anthony@test.com",
+receiver_email: "mia@openmatch.ai",
+message: chatText
+}
+]);
+
+setChatText("");
+}
 
   function generateCoach() {
     if (!coachText.trim()) return;
