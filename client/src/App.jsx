@@ -387,20 +387,31 @@ function SideBtn({ active, onClick, icon, label }) {
 }
 
 function Discover({ profile, like, pass }) {
-if (!profile) return <section><h1>Loading profiles...</h1></section>;
 
-const photo = profile.photos?.[0] || "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80";
+if (!profile) {
+return <section><h1>Loading profiles...</h1></section>;
+}
 
-return <section className="discover">
+const photo =
+profile.photos?.[0] ||
+"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80";
+
+return (
+<section className="discover">
+
 <div className="discoverTop">
 <div>
 <h1>Discover</h1>
 <p>Open Chemistry mode: match beyond identical interests.</p>
 </div>
-<button className="filterBtn"><Search/> Filters</button>
+
+<button className="filterBtn">
+<Search/> Filters
+</button>
 </div>
 
 <div className="swipeWrap">
+
 <div
 className="swipeCard"
 style={{
@@ -409,41 +420,93 @@ backgroundSize: "cover",
 backgroundPosition: "center",
 height: "620px",
 borderRadius: "24px",
-overflow: "hidden"
+overflow: "hidden",
+position: "relative"
 }}
 >
-<div className="swipeInfo">
+
+<div
+className="swipeInfo"
+style={{
+position: "absolute",
+bottom: 0,
+left: 0,
+right: 0,
+padding: "24px"
+}}
+>
+
 <h2>{profile.name}, {profile.age}</h2>
-<p><MapPin size={15}/> {profile.city} • {profile.distance}</p>
+
+<p>
+<MapPin size={15}/> {profile.city} • {profile.distance}
+</p>
+
 <p className="bio">{profile.bio}</p>
+
 <div className="tagRow">
 <span>{profile.intent}</span>
 <span>{profile.vibe}</span>
-{profile.interests.map(i => <span key={i}>{i}</span>)}
+
+{profile.interests.map(i =>
+<span key={i}>{i}</span>
+)}
 </div>
+
 </div>
+
 </div>
 
 <div className="aiPanel">
-<p className="pill"><Brain size={16}/> AI Chemistry</p>
+
+<p className="pill">
+<Brain size={16}/> AI Chemistry
+</p>
+
 <h3>{profile.openChemistry}% Open Chemistry</h3>
-<div className="progress"><div style={{width: profile.openChemistry + "%"}}></div></div>
-<p><strong>Shared interest score:</strong> {profile.sharedInterestScore}%</p>
+
+<div className="progress">
+<div style={{width: profile.openChemistry + "%"}}></div>
+</div>
+
+<p>
+<strong>Shared interest score:</strong>
+{" "}
+{profile.sharedInterestScore}%
+</p>
+
 <p>{profile.aiReason}</p>
+
 <div className="promptBox">
 <strong>AI opener:</strong>
-<p>“You seem different from what I usually go for — and that’s actually interesting. What’s something people misunderstand about you?”</p>
-</div>
-<div className="actions">
-<button className="no" onClick={pass}><X/></button>
-<button className="super" onClick={()=>like(true)}><Star/></button>
-<button className="yes" onClick={()=>like(false)}><Heart/></button>
-</div>
-</div>
-</div>
-</section>
-}
 
+<p>
+“You seem different from what I usually go for —
+and that’s actually interesting.”
+</p>
+</div>
+
+<div className="actions">
+<button className="no" onClick={pass}>
+<X/>
+</button>
+
+<button className="super" onClick={() => like(true)}>
+<Star/>
+</button>
+
+<button className="yes" onClick={() => like(false)}>
+<Heart/>
+</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+);
+}
 
 function Matches({ matches, openChat }) {
   return <section>
