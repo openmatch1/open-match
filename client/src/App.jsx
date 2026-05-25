@@ -290,8 +290,6 @@ supabase.removeChannel(channel);
   const [coachText, setCoachText] = useState("");
   const [coachAnswer, setCoachAnswer] = useState("");
 
-  const profile = profiles[current % profiles.length];
-
 async function like(superLike=false) {
 
 const shouldMatch =
