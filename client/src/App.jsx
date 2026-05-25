@@ -189,12 +189,12 @@ shouldMatch &&
 ) {
 setMatches([profile, ...matches]);
 }
-const { data: existingLike } = await supabase
+const { data: existingLikes } = await supabase
 .from("likes")
 .select("*")
 .eq("liker_email", profile.name + "@openmatch.ai")
-.eq("liked_email", "anthony@test.com")
-.single();
+.eq("liked_email", "anthony@test.com");
+
 
 if (existingLike) {
 
