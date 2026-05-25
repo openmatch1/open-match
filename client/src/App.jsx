@@ -345,10 +345,18 @@ setCurrent(current + 1);
 }
 
 
-  function pass() {
-    setCurrent(current + 1);
-  }
+ function pass() {
+setProfileIndex((current) => {
+const next =
+current + 1 >= seedProfiles.length
+? 0
+: current + 1;
 
+setProfile(seedProfiles[next]);
+
+return next;
+});
+}
   async function sendMessage() {
 
 if (!chatText.trim()) return;
