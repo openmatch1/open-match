@@ -454,8 +454,9 @@ const [name, setName] = useState("Anthony")
 const [age, setAge] = useState(27)
 const [goal, setGoal] = useState("Serious relationship")
 const [bio, setBio] = useState(
-const [avatar, setAvatar] = useState("") 
 "Ambitious, loyal, building something real. Looking for chemistry, not a copy of myself."
+)
+const [avatar, setAvatar] = useState("")
 )
 
 async function saveProfile() {
