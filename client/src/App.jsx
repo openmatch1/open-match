@@ -488,6 +488,45 @@ right: 0,
 padding: "24px"
 }}
 >
+{dragX > 40 && (
+<div
+style={{
+position: "absolute",
+top: 30,
+right: 30,
+padding: "12px 24px",
+border: "4px solid #5dff9b",
+color: "#5dff9b",
+fontWeight: 900,
+fontSize: "32px",
+borderRadius: "18px",
+transform: "rotate(12deg)",
+background: "rgba(0,0,0,0.45)"
+}}
+>
+LIKE
+</div>
+)}
+
+{dragX < -40 && (
+<div
+style={{
+position: "absolute",
+top: 30,
+left: 30,
+padding: "12px 24px",
+border: "4px solid #ff5c5c",
+color: "#ff5c5c",
+fontWeight: 900,
+fontSize: "32px",
+borderRadius: "18px",
+transform: "rotate(-12deg)",
+background: "rgba(0,0,0,0.45)"
+}}
+>
+NOPE
+</div>
+)}
 
 <h2>{profile.name}, {profile.age}</h2>
 
