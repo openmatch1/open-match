@@ -761,8 +761,6 @@ value={bio}
 onChange={(e) => setBio(e.target.value)}
 />
 
-setAvatar(publicUrlData.publicUrl);
-alert("Photo uploaded successfully");
 }}
 />
 <button
