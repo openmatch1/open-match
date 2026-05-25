@@ -341,7 +341,6 @@ liked_email: otherEmail
 }
 ]);
 
-setCurrent(current + 1);
 }
 
 
