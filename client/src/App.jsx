@@ -575,9 +575,9 @@ if (!text.trim()) return;
 const { error } = await supabase
 .from("messages")
 .insert({
-sender: "test-user-1",
-receiver: "real-0",
-text: text
+sender_email: "test-user-1",
+receiver_email: "real-0",
+message: text
 });
 
 if (error) {
