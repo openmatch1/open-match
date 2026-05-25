@@ -178,7 +178,7 @@ function AppShell() {
 
   const profile = profiles[current % profiles.length];
 
-async function like(superLike=false) {
+sync function like(superLike=false) {
 
 const shouldMatch =
 superLike || profile.openChemistry > 90;
@@ -189,33 +189,47 @@ shouldMatch &&
 ) {
 setMatches([profile, ...matches]);
 }
-const { data: existingLikes } = await supabase
+
+const otherEmail = profile.name + "@openmatch.ai";
+const myEmail = "anthony@test.com";
+
+const { data: existingLikes, error: checkError } =
+await supabase
 .from("likes")
 .select("*")
-.eq("liker_email", profile.name + "@openmatch.ai")
-.eq("liked_email", "anthony@test.com");
-const existingLike = existingLikes?.[0];
+.eq("liker_email", otherEmail)
+.eq("liked_email", myEmail);
+
+if (checkError) {
+alert(checkError.message);
+return;
+}
+
+const existingLike =
+existingLikes && existingLikes.length > 0;
 
 if (existingLike) {
 
 await supabase.from("matches").insert([
 {
-user_one: "anthony@test.com",
-user_two: profile.name + "@openmatch.ai"
+user_one: myEmail,
+user_two: otherEmail
 }
 ]);
 
 alert("It's a match!");
 }
+
 await supabase.from("likes").insert([
 {
-liker_email: "anthony@test.com",
-liked_email: profile.name + "@openmatch.ai"
+liker_email: myEmail,
+liked_email: otherEmail
 }
 ]);
 
 setCurrent(current + 1);
-} 
+}
+
 
   function pass() {
     setCurrent(current + 1);
