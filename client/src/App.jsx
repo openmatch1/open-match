@@ -397,7 +397,14 @@ function Discover({ profile, like, pass }) {
     </div>
 
     <div className="swipeWrap">
-      <div className="swipeCard">
+    <div
+className="swipeCard"
+style={{
+height: "520px",
+overflow: "hidden",
+borderRadius: "24px"
+}}
+>
       <img
 src={profile.photos[0]}
 alt={profile.name}
