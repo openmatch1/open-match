@@ -1,5 +1,5 @@
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import {
   Heart, X, MessageCircle, Sparkles, Crown, ShieldCheck, Search,
