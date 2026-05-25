@@ -695,24 +695,18 @@ h2{
 
 
 
-.profilePreview{
-
-
-
-  height:620px;
-
-
-
-  overflow:hidden;
-
-
-
-  position:relative;
-
-
-
+.profilePreview {
+position: relative;
+height: 72vh;
+min-height: 520px;
+border-radius: 32px;
+overflow: hidden;
+background-size: cover;
+background-position: center;
+display: flex;
+align-items: flex-end;
+padding: 28px;
 }
-
 
 
 .profilePreview img{
@@ -733,7 +727,16 @@ h2{
 
 }
 
-
+.profileOverlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(
+to top,
+rgba(0,0,0,0.88) 8%,
+rgba(0,0,0,0.25) 45%,
+rgba(0,0,0,0.05) 100%
+);
+}
 
 .profileOverlay{
 
