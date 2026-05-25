@@ -168,7 +168,44 @@ function Plan({ name, price, perks, hot }) {
 
 function AppShell() {
   const [screen, setScreen] = useState("discover");
-  const [profiles, setProfiles] = useState(seedProfiles);
+  const [profiles, setProfiles] = useState([]);
+  useEffect(() => {
+
+async function loadProfiles() {
+
+const { data } = await supabase
+.from("profiles")
+.select("*");
+
+if (data) {
+
+const formatted = data.map((p, index) => ({
+id: "real-" + index,
+name: p.name || "Unknown",
+age: p.age || 18,
+city: p.city || "Unknown",
+distance: "5 miles away",
+vibe: "Real user",
+intent: "Relationship",
+photos: p.avatar
+? [p.avatar]
+: ["https://images.unsplash.com/photo-1494790108377-be9c29b29330"],
+bio: p.bio || "",
+prompts: [],
+interests: p.interests || [],
+openChemistry: 95,
+sharedInterestScore: 50,
+aiReason: "AI generated compatibility."
+}));
+
+setProfiles(formatted);
+}
+}
+
+loadProfiles();
+
+}, []);
+
   const [current, setCurrent] = useState(0);
   const [matches, setMatches] = useState([seedProfiles[1]]);
   const [chatText, setChatText] = useState("");
