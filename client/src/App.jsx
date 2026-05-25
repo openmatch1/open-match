@@ -570,7 +570,7 @@ and that’s actually interesting.”
 <X/>
 </button>
 
-<button className="super" onClick={() => like(true)}>
+<button className="super" onClick={() => like(profile)}>
 <Star/>
 </button>
 
