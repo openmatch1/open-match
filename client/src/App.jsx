@@ -194,7 +194,7 @@ const { data: existingLikes } = await supabase
 .select("*")
 .eq("liker_email", profile.name + "@openmatch.ai")
 .eq("liked_email", "anthony@test.com");
-
+const existingLike = existingLikes?.[0];
 
 if (existingLike) {
 
