@@ -457,7 +457,7 @@ const [bio, setBio] = useState(
 "Ambitious, loyal, building something real. Looking for chemistry, not a copy of myself."
 )
 const [avatar, setAvatar] = useState("")
-)
+
 
 async function saveProfile() {
 const { error } = await supabase
