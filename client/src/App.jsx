@@ -172,6 +172,7 @@ function AppShell({ user }) {
   const [messages, setMessages] = useState([]);
   const [profileIndex, setProfileIndex] = useState(0);
 const [profile, setProfile] = useState(seedProfiles[0]);
+const [showMatch, setShowMatch] = useState(false);  
   useEffect(() => {
 async function loadMessages() {
 const { data } = await supabase
@@ -330,6 +331,11 @@ user_two: otherEmail
 ]);
 
 alert("It's a match!");
+ setShowMatch(true);
+
+setTimeout(() => {
+setShowMatch(false);
+}, 2500); 
 }
 
 await supabase.from("likes").insert([
@@ -383,6 +389,12 @@ setChatText("");
 
   return (
     <div className="app">
+      {showMatch && (
+<div className="matchPopup">
+<h1>💖 It’s a Match!</h1>
+<p>You and {profile.name} liked each other.</p>
+</div>
+)}
       <aside className="sidebar">
         <div className="brand sideBrand"><div className="ring"></div><span>Open Match</span></div>
         <SideBtn active={screen==="discover"} onClick={()=>setScreen("discover")} icon={<Flame/>} label="Discover"/>
