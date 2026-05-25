@@ -410,9 +410,7 @@ src={profile.photos[0]}
 alt={profile.name}
 style={{
 width: "100%",
-height: "620px",
 objectFit: "cover",
-display: "block",
 borderRadius: "24px",
 }}
 />
