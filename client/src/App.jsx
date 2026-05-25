@@ -413,7 +413,39 @@ return <section><h1>Loading profiles...</h1></section>;
 const photo =
 profile.photos?.[0] ||
 "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80";
+const [dragX, setDragX] = useState(0);
 
+const handleDragStart = (e) => {
+const startX = e.clientX || e.touches?.[0]?.clientX;
+
+const move = (moveEvent) => {
+const currentX =
+moveEvent.clientX || moveEvent.touches?.[0]?.clientX;
+
+setDragX(currentX - startX);
+};
+
+const end = () => {
+if (dragX > 120) {
+handleLike(profile);
+} else if (dragX < -120) {
+pass();
+}
+
+setDragX(0);
+
+window.removeEventListener("mousemove", move);
+window.removeEventListener("mouseup", end);
+window.removeEventListener("touchmove", move);
+window.removeEventListener("touchend", end);
+};
+
+window.addEventListener("mousemove", move);
+window.addEventListener("mouseup", end);
+window.addEventListener("touchmove", move);
+window.addEventListener("touchend", end);
+};
+  
 return (
 <section className="discover">
 
@@ -439,8 +471,12 @@ backgroundPosition: "center",
 height: "620px",
 borderRadius: "24px",
 overflow: "hidden",
-position: "relative"
+position: "relative",
+transform: `translateX(${dragX}px) rotate(${dragX / 20}deg)`,
+transition: dragX === 0 ? "0.3s ease" : "none",  
 }}
+onMouseDown={handleDragStart}
+onTouchStart={handleDragStart}  
 >
 
 <div
