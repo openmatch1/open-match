@@ -429,7 +429,7 @@ const end = () => {
 if (dragX > 120) {
 setLeaving("right");
 setTimeout(() => {
-handleLike(profile);
+like(profile);
 setLeaving(null);
 setDragX(0);
 }, 250);
@@ -576,7 +576,7 @@ and that’s actually interesting.”
 
 <button
 className="yes"
-onClick={() => handleLike(profile)}
+onClick={() => like(profile);
 >
 <Heart />
 </button>
