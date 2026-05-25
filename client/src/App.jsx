@@ -236,7 +236,6 @@ setProfiles(formatted);
 
 loadProfiles();
 loadMessages();    
-loadMatches();
 }, []);
 
   const [current, setCurrent] = useState(0);
