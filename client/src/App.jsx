@@ -170,6 +170,8 @@ function AppShell({ user }) {
   const [screen, setScreen] = useState("discover");
   const [profiles, setProfiles] = useState(seedProfiles);
   const [messages, setMessages] = useState([]);
+  const [profileIndex, setProfileIndex] = useState(0);
+const [profile, setProfile] = useState(seedProfiles[0]);
   useEffect(() => {
 async function loadMessages() {
 const { data } = await supabase
