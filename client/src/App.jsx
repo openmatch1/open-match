@@ -604,8 +604,13 @@ NOPE
 <strong>AI opener:</strong>
 
 <p>
-“You seem different from what I usually go for —
-and that’s actually interesting.”
+{
+profile.openChemistry > 90
+? "You honestly seem refreshing compared to most people on here."
+: profile.sharedInterestScore > 50
+? "I feel like we'd either click instantly or debate for hours."
+: "You seem like someone I'd actually remember after one conversation."
+}
 </p>
 </div>
 
