@@ -169,12 +169,20 @@ function Plan({ name, price, perks, hot }) {
 }
 
 function AppShell({ user }) {
-  const [screen, setScreen] = useState("discover");
+ const [screen, setScreen] = useState("onboarding");
   const [profiles, setProfiles] = useState(seedProfiles);
   const [messages, setMessages] = useState([]);
   const [profileIndex, setProfileIndex] = useState(0);
 const [profile, setProfile] = useState(seedProfiles[0]);
-const [showMatch, setShowMatch] = useState(false);  
+const [showMatch, setShowMatch] = useState(false);
+  const [onboarding, setOnboarding] = useState({
+name: "",
+age: "",
+city: "",
+bio: "",
+interests: "",
+photo: ""
+});
   useEffect(() => {
 async function loadMessages() {
 const { data } = await supabase
@@ -409,6 +417,13 @@ setChatText("");
       </aside>
 
       <main className="appMain">
+        {screen === "onboarding" && (
+<Onboarding
+onboarding={onboarding}
+setOnboarding={setOnboarding}
+finish={() => setScreen("discover")}
+/>
+)}
         {screen === "discover" && <Discover profile={profile} like={like} pass={pass}/>}
         {screen === "matches" && <Matches matches={matches} openChat={()=>setScreen("chat")}/>}
         {screen === "chat" && <Chat messages={messages} text={chatText} setText={setChatText} send={sendMessage}/>}
@@ -419,6 +434,87 @@ setChatText("");
       </main>
     </div>
   );
+}
+function Onboarding({ onboarding, setOnboarding, finish }) {
+return (
+<section className="onboarding">
+<div className="glassCard onboardingCard">
+
+<h1>Create Your Profile</h1>
+
+<input
+placeholder="Name"
+value={onboarding.name}
+onChange={(e) =>
+setOnboarding({
+...onboarding,
+name: e.target.value
+})
+}
+/>
+
+<input
+placeholder="Age"
+value={onboarding.age}
+onChange={(e) =>
+setOnboarding({
+...onboarding,
+age: e.target.value
+})
+}
+/>
+
+<input
+placeholder="City"
+value={onboarding.city}
+onChange={(e) =>
+setOnboarding({
+...onboarding,
+city: e.target.value
+})
+}
+/>
+
+<textarea
+placeholder="Bio"
+value={onboarding.bio}
+onChange={(e) =>
+setOnboarding({
+...onboarding,
+bio: e.target.value
+})
+}
+/>
+
+<input
+placeholder="Interests (comma separated)"
+value={onboarding.interests}
+onChange={(e) =>
+setOnboarding({
+...onboarding,
+interests: e.target.value
+})
+}
+/>
+
+<input
+placeholder="Photo URL"
+value={onboarding.photo}
+onChange={(e) =>
+setOnboarding({
+...onboarding,
+photo: e.target.value
+})
+}
+/>
+
+<button className="primary" onClick={finish}>
+Launch Open Match
+</button>
+
+</div>
+</section>
+);
 }
 
 function SideBtn({ active, onClick, icon, label }) {
@@ -1012,9 +1108,9 @@ listener.subscription.unsubscribe();
 };
 }, []);
 if (!entered) {
-return <Landing enter={() => setEntered(true)} />;
-}
-
+return <Landing enter={() => {
+setEntered(true);
+}} />;
 if (!user) {
 return <AuthScreen setUser={setUser} />;
 }
