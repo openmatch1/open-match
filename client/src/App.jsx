@@ -393,7 +393,7 @@ setChatText("");
         {screen === "chat" && <Chat messages={messages} text={chatText} setText={setChatText} send={sendMessage}/>}
         {screen === "coach" && <Coach coachText={coachText} setCoachText={setCoachText} generateCoach={generateCoach} coachAnswer={coachAnswer}/>}
         {screen === "premium" && <Premium/>}
-        {screen === "profile" && <MyProfile/>}
+        {screen === "profile" && <MyProfile user={user} />}
         {screen === "settings" && <SettingsScreen/>}
       </main>
     </div>
@@ -652,7 +652,7 @@ function Premium() {
   </section>
 }
 
-function MyProfile() {
+function MyProfile({ user }) {
 const [name, setName] = useState("Anthony")
 const [age, setAge] = useState(27)
 const [goal, setGoal] = useState("Serious relationship")
