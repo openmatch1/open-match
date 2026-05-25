@@ -569,6 +569,26 @@ function Matches({ matches, openChat }) {
 }
 
 function Chat({ messages, text, setText, send }) {
+  const sendMessage = async () => {
+if (!text.trim()) return;
+
+const { error } = await supabase
+.from("messages")
+.insert({
+sender: "test-user-1",
+receiver: "real-0",
+text: text
+});
+
+if (error) {
+console.log(error);
+alert("Message failed");
+return;
+}
+
+alert("Message sent");
+setText("");
+};
   return <section className="chatScreen">
     <h1>Messages</h1>
     <div className="chatBox">
