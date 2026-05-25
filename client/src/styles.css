@@ -695,10 +695,10 @@ h2{
 
 .stackCard {
 position: absolute;
-top: 18px;
-left: 18px;
-right: 18px;
-bottom: 18px;
+width: 88%;
+height: 92%;
+top: 24px;
+left: 32px;
 border-radius: 24px;
 background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
 border: 2px solid rgba(255,255,255,0.16);
