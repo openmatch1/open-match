@@ -230,6 +230,7 @@ aiReason: "AI generated compatibility."
 }));
 
 setProfiles(formatted);
+ setProfile(formatted[0]); 
 }
 }
 
@@ -361,11 +362,11 @@ liked_email: otherEmail
  function pass() {
 setProfileIndex((current) => {
 const next =
-current + 1 >= seedProfiles.length
+current + 1 >= profiles.length
 ? 0
 : current + 1;
 
-setProfile(seedProfiles[next]);
+setProfile(profiles[next]);
 
 return next;
 });
