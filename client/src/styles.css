@@ -1462,100 +1462,46 @@ section>p{
 
 
 
-.actions{
-
-
-
-  display:flex;
-
-
-
-  gap:16px;
-
-
-
-  margin-top:28px;
-
-
-
+.actions {
+position: absolute;
+bottom: 24px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 18px;
+z-index: 20;
 }
 
 
+.actions button {
+width: 72px;
+height: 72px;
+border-radius: 999px;
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;
+backdrop-filter: blur(20px);
+font-size: 26px;
+cursor: pointer;
+box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+ 
 
-.actions button{
-
-
-
-  width:72px;
-
-
-
-  height:72px;
-
-
-
-  padding:0;
-
-
-
-  display:grid;
-
-
-
-  place-items:center;
-
-
-
+.no {
+background: rgba(255,80,80,0.18);
+color: #ff5c5c;
 }
 
-
-
-.no{
-
-
-
-  background:rgba(255,90,110,.18);
-
-
-
-  color:var(--red);
-
-
-
+.super {
+background: rgba(0,180,255,0.18);
+color: #58c7ff;
 }
 
-
-
-.super{
-
-
-
-  background:rgba(247,199,111,.18);
-
-
-
-  color:var(--gold);
-
-
-
+.yes {
+background: rgba(90,255,140,0.18);
+color: #5dff9b;
 }
-
-
-
-.yes{
-
-
-
-  background:rgba(62,255,163,.18);
-
-
-
-  color:var(--green);
-
-
-
-}
-
 
 
 .matchGrid{
