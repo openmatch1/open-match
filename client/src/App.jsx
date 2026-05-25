@@ -413,9 +413,13 @@ width: "100%",
 height: "100%",
 objectFit: "cover",
 borderRadius: "24px"
+position: "absolute",
+top: 0,
+left: 0,
+zIndex: 0,
 }}
 />
-        <div className="swipeInfo">
+        <div className="swipeInfo" style={{ position: "relative", zIndex: 2 }}>
           <h2>{profile.name}, {profile.age}</h2>
           <p><MapPin size={15}/> {profile.city} • {profile.distance}</p>
           <p className="bio">{profile.bio}</p>
