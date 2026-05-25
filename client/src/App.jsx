@@ -713,6 +713,25 @@ return (
 <h1>My Profile</h1>
 
 <div className="settingsPanel">
+<label>Profile Photo</label>
+
+<input
+type="file"
+accept="image/*"
+onChange={uploadPhoto}
+/>
+
+{avatar && (
+<img
+src={avatar}
+alt="Profile"
+style={{
+width: "160px",
+borderRadius: "20px",
+marginTop: "15px"
+}}
+/>
+)}
 
 <label>Name</label>
 <input
