@@ -863,6 +863,7 @@ function Matches({ matches, openChat }) {
 <button onClick={openChat}>Message</button>
 </div>
 ))}
+    </div>
   </section>
 }
 
