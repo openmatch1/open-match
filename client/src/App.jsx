@@ -460,8 +460,19 @@ return (
 </div>
 
 <div className="swipeWrap">
-<div className="stackCard stackCardTwo"></div>
-<div className="stackCard stackCardOne"></div>
+<div
+className="stackCard stackCardTwo"
+style={{
+transform: `scale(0.92) translateY(${40 - Math.abs(dragX) * 0.05}px) translateX(36px) rotate(6deg)`
+}}
+></div>
+
+<div
+className="stackCard stackCardOne"
+style={{
+transform: `scale(0.96) translateY(${20 - Math.abs(dragX) * 0.03}px) translateX(18px) rotate(3deg)`
+}}
+></div>
 <div
 className="swipeCard"
 style={{
