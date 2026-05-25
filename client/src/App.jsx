@@ -508,9 +508,29 @@ photo: e.target.value
 }
 />
 
-<button className="primary" onClick={finish}>
+<button
+className="primary"
+onClick={async () => {
+
+await supabase.from("profiles").insert([
+{
+email: onboarding.name + "@openmatch.ai",
+name: onboarding.name,
+age: Number(onboarding.age),
+city: onboarding.city,
+bio: onboarding.bio,
+interests: onboarding.interests
+.split(",")
+.map(i => i.trim())
+}
+]);
+
+finish();
+}}
+>
 Launch Open Match
 </button>
+
 
 </div>
 </section>
