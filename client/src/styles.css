@@ -1965,3 +1965,45 @@ section>p{
 
 }
 
+@media (max-width: 768px) {
+.app {
+grid-template-columns: 1fr;
+}
+
+.sidebar {
+position: sticky;
+top: 0;
+z-index: 10;
+width: 100%;
+flex-direction: row;
+overflow-x: auto;
+padding: 12px;
+}
+
+.appMain {
+padding: 20px;
+}
+
+h1 {
+font-size: 42px;
+}
+
+.swipeWrap,
+.chatBox,
+.settingsPanel {
+width: 100%;
+}
+
+.profileCard,
+.matchGrid,
+.priceGrid {
+grid-template-columns: 1fr;
+}
+
+input,
+textarea,
+select,
+button {
+font-size: 16px;
+}
+}
