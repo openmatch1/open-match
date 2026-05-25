@@ -172,7 +172,35 @@ function AppShell() {
   const [current, setCurrent] = useState(0);
   const [matches, setMatches] = useState([seedProfiles[1]]);
   const [chatText, setChatText] = useState("");
-  const [messages, setMessages] = useState(fakeMessages);
+  const [messages, setMessages] = useState([]);
+
+useEffect(() => {
+
+async function loadMessages() {
+
+const { data } = await supabase
+.from("messages")
+.select("*")
+.order("created_at", { ascending: true });
+
+if (data) {
+
+const formatted = data.map((msg) => ({
+from:
+msg.sender_email === "anthony@test.com"
+? "me"
+: "them",
+
+text: msg.message
+}));
+
+setMessages(formatted);
+}
+}
+
+loadMessages();
+
+}, []);
   const [coachText, setCoachText] = useState("");
   const [coachAnswer, setCoachAnswer] = useState("");
 
