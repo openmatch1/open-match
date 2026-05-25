@@ -513,7 +513,17 @@ photo: e.target.files[0]
 <button
 className="primary"
 onClick={async () => {
+const fileName = Date.now() + "-" + onboarding.photo.name;
 
+await supabase.storage
+.from("profile-photos")
+.upload(fileName, onboarding.photo);
+
+const photoUrl =
+supabase.storage
+.from("profile-photos")
+.getPublicUrl(fileName)
+.data.publicUrl;
 await supabase.from("profiles").insert([
 {
 email: onboarding.name + "@openmatch.ai",
@@ -521,6 +531,7 @@ name: onboarding.name,
 age: Number(onboarding.age),
 city: onboarding.city,
 bio: onboarding.bio,
+ photo: photoUrl, 
 interests: onboarding.interests
 .split(",")
 .map(i => i.trim())
