@@ -454,6 +454,7 @@ const [name, setName] = useState("Anthony")
 const [age, setAge] = useState(27)
 const [goal, setGoal] = useState("Serious relationship")
 const [bio, setBio] = useState(
+const [avatar, setAvatar] = useState("") 
 "Ambitious, loyal, building something real. Looking for chemistry, not a copy of myself."
 )
 
@@ -465,6 +466,7 @@ const { error } = await supabase
 name,
 age,
 bio,
+avatar,
 city: "Orlando",
 email: "anthony@test.com",
 interests: ["business", "fitness", "travel"]
@@ -532,7 +534,8 @@ data: publicUrlData
 .from("avatars")
 .getPublicUrl(fileName);
 
-alert(publicUrlData.publicUrl);
+setAvatar(publicUrlData.publicUrl);
+alert("Photo uploaded successfully");
 }}
 />
 <button
