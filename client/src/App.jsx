@@ -860,7 +860,7 @@ function Matches({ matches, openChat }) {
 <p>Matched user</p>
 <p>Open Chemistry connection</p>
 <button onClick={openChat}>Message</button>
-</div>
+</div>)}
   </section>
 }
 
