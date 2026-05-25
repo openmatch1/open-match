@@ -171,7 +171,24 @@ function AppShell() {
   const [profiles, setProfiles] = useState(seedProfiles);
   const [messages, setMessages] = useState([]);
   useEffect(() => {
+async function loadMessages() {
+const { data } = await supabase
+.from("messages")
+.select("*")
+.order("created_at", { ascending: true });
 
+if (data) {
+const formatted = data.map((m) => ({
+from:
+m.sender_email === "test-user-1"
+? "me"
+: "them",
+text: m.message
+}));
+
+setMessages(formatted);
+}
+}
 async function loadProfiles() {
 
 const { data } = await supabase
@@ -204,6 +221,7 @@ setProfiles(formatted);
 }
 
 loadProfiles();
+loadMessages();    
 
 }, []);
 
