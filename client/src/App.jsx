@@ -460,7 +460,8 @@ return (
 </div>
 
 <div className="swipeWrap">
-
+<div className="stackCard stackCardTwo"></div>
+<div className="stackCard stackCardOne"></div>
 <div
 className="swipeCard"
 style={{
