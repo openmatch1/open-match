@@ -605,6 +605,13 @@ return;
 }
 
 alert("Message sent");
+setMessages((prev) => [
+...prev,
+{
+from: "me",
+text: text
+}
+]);    
 setText("");
 };
   return <section className="chatScreen">
