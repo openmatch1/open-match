@@ -530,7 +530,24 @@ console.error("Like error:", error);
 alert("Like did not save");
 return;
 }
+const { data: existingLike } = await supabase
+.from("likes")
+.select("*")
+.eq(
+"liker_email",
+likedUser.email || likedUser.id || likedUser.name
+)
+.eq("liked_email", "test-user-1")
+.single();
 
+if (existingLike) {
+await supabase.from("matches").insert({
+user1_id: "test-user-1",
+user2_id: likedUser.email || likedUser.id || likedUser.name
+});
+
+alert("It's a match!");
+}
 alert("Like saved");
 };
 
