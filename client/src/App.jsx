@@ -511,7 +511,30 @@ onChange={(e) => setGoal(e.target.value)}
 value={bio}
 onChange={(e) => setBio(e.target.value)}
 />
+<input
+type="file"
+onChange={async (e) => {
 
+const file = e.target.files[0];
+
+if (!file) return;
+
+const fileName =
+Date.now() + "-" + file.name;
+
+await supabase.storage
+.from("avatars")
+.upload(fileName, file);
+
+const {
+data: publicUrlData
+} = supabase.storage
+.from("avatars")
+.getPublicUrl(fileName);
+
+alert(publicUrlData.publicUrl);
+}}
+/>
 <button
 className="primary"
 onClick={saveProfile}
