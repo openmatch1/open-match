@@ -611,7 +611,17 @@ setDragX(0);
 <X/>
 </button>
 
-<button className="super" onClick={() => like(profile)}>
+<button
+className="super"
+onClick={() => {
+setDragX(220);
+setTimeout(() => {
+like(true);
+pass();
+setDragX(0);
+}, 220);
+}}
+>
 <Star/>
 </button>
 
@@ -621,7 +631,8 @@ onClick={() => {
 setDragX(220);
 
 setTimeout(() => {
-like(profile);
+like(false);
+pass();
 setDragX(0);
 }, 220);
 }}
