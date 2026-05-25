@@ -166,7 +166,7 @@ function Plan({ name, price, perks, hot }) {
   </div>
 }
 
-function AppShell() {
+function AppShell({ user }) {
   const [screen, setScreen] = useState("discover");
   const [profiles, setProfiles] = useState(seedProfiles);
   const [messages, setMessages] = useState([]);
@@ -837,7 +837,21 @@ Create Account
 function Root() {
 const [entered, setEntered] = useState(false);
 const [user, setUser] = useState(null);
+useEffect(() => {
+supabase.auth.getUser().then(({ data }) => {
+setUser(data.user);
+});
 
+const { data: listener } = supabase.auth.onAuthStateChange(
+(_event, session) => {
+setUser(session?.user || null);
+}
+);
+
+return () => {
+listener.subscription.unsubscribe();
+};
+}, []);
 if (!entered) {
 return <Landing enter={() => setEntered(true)} />;
 }
@@ -846,7 +860,7 @@ if (!user) {
 return <AuthScreen setUser={setUser} />;
 }
 
-return <AppShell />;
+return <AppShell user={user} />;
 }
 
 createRoot(document.getElementById("root")).render(<Root />);
