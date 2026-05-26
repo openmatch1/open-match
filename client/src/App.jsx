@@ -184,6 +184,7 @@ if (link !== "#") window.open(link, "_blank");
 function AppShell({ user }) {
  const [screen, setScreen] = useState("onboarding");
 const [profiles, setProfiles] = useState(seedProfiles);
+  const [userPlan, setUserPlan] = useState("free");
   const [messages, setMessages] = useState([]);
   const [profileIndex, setProfileIndex] = useState(0);
   const [swipesToday, setSwipesToday] = useState(0);
@@ -257,6 +258,13 @@ p.age <= filters.maxAge &&
 p.city?.toLowerCase().includes(filters.city.toLowerCase()))
 );
 });
+const currentUser = formatted.find(
+(p) => p.email === user?.email
+);
+
+if (currentUser?.plan) {
+setUserPlan(currentUser.plan);
+}
 
 setProfiles(filtered);
 setProfile(filtered[0]);
@@ -417,11 +425,10 @@ liked_email: otherEmail
 
 
  function pass() {
-  if (swipesToday >= FREE_SWIPE_LIMIT) {
-alert("Daily swipe limit reached. Upgrade to Plus.");
-return;
-}
-
+  if (
+userPlan === "free" &&
+swipesToday >= FREE_SWIPE_LIMIT
+) {
 setSwipesToday((s) => s + 1); 
 setProfileIndex((current) => {
 const next =
@@ -620,6 +627,7 @@ supabase.storage
 await supabase.from("profiles").insert([
 {
 email: onboarding.name + "@openmatch.ai",
+plan: "free", 
 name: onboarding.name,
 age: Number(onboarding.age),
 city: onboarding.city,
