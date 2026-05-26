@@ -164,7 +164,13 @@ function Plan({ name, price, perks, hot }) {
   return <div className={"plan " + (hot ? "hot" : "")}>
     <h3>{name}</h3><strong>{price}</strong>
     {perks.map(p => <p key={p}>✓ {p}</p>)}
-    <button>{hot ? "Start Plus" : "Choose"}</button>
+    <button
+onClick={() =>
+window.open("https://buy.stripe.com/test_123456789", "_blank")
+}
+>
+{hot ? "Start Plus" : "Choose"}
+</button>
   </div>
 }
 
