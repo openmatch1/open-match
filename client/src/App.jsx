@@ -867,7 +867,7 @@ alert("Like saved");
 };
 
 
-function Matches({ matches, openChat }) {
+function Matches({ matches, setSelectedMatch, openChat }) {
   return <section>
     <h1>Your Matches</h1>
     <p>People who matched with your vibe, not just your hobbies.</p>
@@ -877,14 +877,21 @@ function Matches({ matches, openChat }) {
 <h3>{m.user_two}</h3>
 <p>Matched user</p>
 <p>Open Chemistry connection</p>
-<button onClick={openChat}>Message</button>
+<button
+onClick={() => {
+setSelectedMatch(m);
+openChat();
+}}
+>
+Message
+</button>
 </div>
 ))}
     </div>
   </section>
 }
 
-function Chat({ messages, setMessages, text, setText, user, matches }) {
+function Chat({ messages, setMessages, text, setText, user, matches, selectedMatch }) {
   const sendMessage = async () => {
 if (!text.trim()) return;
 
@@ -892,7 +899,7 @@ const { error } = await supabase
 .from("messages")
 .insert({
 sender_email: user?.email,
-receiver_email: matches[0]?.user_two || "no-match",
+receiver_email: selectedMatch?.user_two || matches[0]?.user_two || "no-match",
 message: text
 });
 
