@@ -169,7 +169,8 @@ const userId = session.metadata?.userId;
 const plan = session.metadata?.plan || "plus";
 
 if (userId) {
-const user = profiles.find((p) => p.id === userId);
+const user = profiles.find(p => p.id === userId);
+  
 if (user) {
 user.plan = plan;
 console.log(`User ${userId} upgraded to ${plan}`);
