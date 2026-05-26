@@ -241,7 +241,7 @@ loadMessages();
   const [current, setCurrent] = useState(0);
   const [matches, setMatches] = useState([]);
   const [chatText, setChatText] = useState("");
-  
+  const [selectedMatch, setSelectedMatch] = useState(null);
 useEffect(() => {
 async function loadMatches() {
 const myEmail = user?.email || "anthony@test.com";
@@ -436,7 +436,14 @@ finish={() => setScreen("discover")}
 />
 )}
         {screen === "discover" && <Discover profile={profile} like={like} pass={pass}/>}
-        {screen === "matches" && <Matches matches={matches} openChat={()=>setScreen("chat")}/>}
+       {screen === "matches" && (
+<Matches
+matches={matches}
+ selectedMatch={selectedMatch} 
+setSelectedMatch={setSelectedMatch}
+openChat={() => setScreen("chat")}
+/>
+)}
    {screen === "chat" && (
 <Chat
 messages={messages}
@@ -445,6 +452,7 @@ text={chatText}
 setText={setChatText}
 user={user}
 matches={matches}
+  selectedMatch={selectedMatch} 
 />
 )}
      
