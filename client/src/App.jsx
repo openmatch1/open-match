@@ -249,6 +249,7 @@ setProfile(filtered[0]);
 }
 
 loadProfiles();
+loadLikes();
 loadMessages();
 
 }, [filters]);
