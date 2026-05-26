@@ -144,6 +144,7 @@ app.post("/safety/report", auth, (req, res) => {
   res.json({ received: true, message: "Report received. Add admin moderation dashboard in production." });
 });
 app.post("/stripe-webhook", (req, res) => {
+
 const sig = req.headers["stripe-signature"];
 
 let event;
