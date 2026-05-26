@@ -186,6 +186,8 @@ function AppShell({ user }) {
 const [profiles, setProfiles] = useState(seedProfiles);
   const [messages, setMessages] = useState([]);
   const [profileIndex, setProfileIndex] = useState(0);
+  const [swipesToday, setSwipesToday] = useState(0);
+const FREE_SWIPE_LIMIT = 10;
 const [profile, setProfile] = useState(null);
 const [showMatch, setShowMatch] = useState(false);
   const [filters, setFilters] = useState({
@@ -415,6 +417,12 @@ liked_email: otherEmail
 
 
  function pass() {
+  if (swipesToday >= FREE_SWIPE_LIMIT) {
+alert("Daily swipe limit reached. Upgrade to Plus.");
+return;
+}
+
+setSwipesToday((s) => s + 1); 
 setProfileIndex((current) => {
 const next =
 current + 1 >= profiles.length
