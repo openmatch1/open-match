@@ -431,6 +431,7 @@ swipesToday >= FREE_SWIPE_LIMIT
 ) {
 alert("Daily swipe limit reached. Upgrade to Plus.");
 return;
+ window.location.href = "https://buy.stripe.com/test_XXXXXXXXXXXX";  
 }
 
 setSwipesToday((s) => s + 1);
