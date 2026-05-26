@@ -479,7 +479,12 @@ matches={matches}
         {screen === "coach" && <Coach coachText={coachText} setCoachText={setCoachText} generateCoach={generateCoach} coachAnswer={coachAnswer}/>}
         {screen === "premium" && <Premium/>}
         {screen === "profile" && <MyProfile user={user} />}
-        {screen === "settings" && <SettingsScreen/>}
+        {screen === "settings" && (
+<SettingsScreen
+filters={filters}
+setFilters={setFilters}
+/>
+)}
       </main>
     </div>
   );
@@ -1098,13 +1103,35 @@ Save Profile
 )
 }
 
-function SettingsScreen() {
+function SettingsScreen({ filters, setFilters }) {
   return <section>
     <h1>Settings & Safety</h1>
     <div className="settingsPanel">
-      <p><ShieldCheck/> Photo verification placeholder</p>
-      <p><Lock/> Privacy controls placeholder</p>
-      <p><Eye/> Visibility and boost settings placeholder</p>
+      <label>Minimum Age</label>
+<input
+type="number"
+value={filters.minAge}
+onChange={(e) =>
+setFilters({ ...filters, minAge: Number(e.target.value) })
+}
+/>
+
+<label>Maximum Age</label>
+<input
+type="number"
+value={filters.maxAge}
+onChange={(e) =>
+setFilters({ ...filters, maxAge: Number(e.target.value) })
+}
+/>
+
+<label>City</label>
+<input
+value={filters.city}
+onChange={(e) =>
+setFilters({ ...filters, city: e.target.value })
+}
+/>
       <button>Block List</button>
       <button>Report a User</button>
       <button>Delete Account</button>
