@@ -142,9 +142,6 @@ app.post("/ai/coach", auth, async (req, res) => {
 app.post("/safety/report", auth, (req, res) => {
   res.json({ received: true, message: "Report received. Add admin moderation dashboard in production." });
 });
-
-app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
-
 app.post("/stripe-webhook", (req, res) => {
 const sig = req.headers["stripe-signature"];
 
@@ -177,3 +174,6 @@ console.log("Subscription cancelled");
 
 res.json({ received: true });
 });
+
+app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
+
