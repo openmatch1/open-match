@@ -165,8 +165,18 @@ const session = event.data.object;
 console.log("Payment successful!");
 console.log(session);
 
-// TODO:
-// Upgrade user subscription here
+const userId = session.metadata?.userId;
+const plan = session.metadata?.plan || "plus";
+
+if (userId) {
+const user = profiles.find((p) => p.id === userId);
+
+if (user) {
+user.plan = plan;
+console.log(`User ${userId} upgraded to ${plan}`);
+} else {
+console.log("User not found for upgrade:", userId);
+}
 }
 
 if (event.type === "customer.subscription.deleted") {
