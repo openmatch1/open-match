@@ -256,10 +256,16 @@ setMatches(data);
 }
 }
 async function loadMessages() {
-
+if (!selectedMatch) {
+setMessages([]);
+return;
+}
 const { data } = await supabase
 .from("messages")
 .select("*")
+.or(
+`and(sender_email.eq.${user?.email},receiver_email.eq.${selectedMatch?.user_two}),and(sender_email.eq.${selectedMatch?.user_two},receiver_email.eq.${user?.email})`
+)
 .order("created_at", { ascending: true });
 
 if (data) {
@@ -308,7 +314,7 @@ return () => {
 supabase.removeChannel(channel);
 };
 
-}, []);
+}, [selectedMatch, user?.email]);
   const [coachText, setCoachText] = useState("");
   const [coachAnswer, setCoachAnswer] = useState("");
 
