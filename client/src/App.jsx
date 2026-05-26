@@ -483,6 +483,7 @@ setSelectedMatch={setSelectedMatch}
 openChat={() => setScreen("chat")}
 />
 )}
+ {screen === "likes" && <LikesScreen likes={likes} />}       
    {screen === "chat" && (
 <Chat
 messages={messages}
