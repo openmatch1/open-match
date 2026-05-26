@@ -254,6 +254,7 @@ loadMessages();
 
   const [current, setCurrent] = useState(0);
   const [matches, setMatches] = useState([]);
+  const [likes, setLikes] = useState([]);
   const [chatText, setChatText] = useState("");
   const [selectedMatch, setSelectedMatch] = useState(null);
 useEffect(() => {
@@ -269,6 +270,16 @@ if (data) {
 setMatches(data);
 }
 }
+ async function loadLikes() {
+const { data } = await supabase
+.from("likes")
+.select("*")
+.eq("liked_email", user?.email);
+
+if (data) {
+setLikes(data);
+}
+} 
 async function loadMessages() {
 if (!selectedMatch) {
 setMessages([]);
@@ -440,6 +451,12 @@ setChatText("");
         <div className="brand sideBrand"><div className="ring"></div><span>Open Match</span></div>
         <SideBtn active={screen==="discover"} onClick={()=>setScreen("discover")} icon={<Flame/>} label="Discover"/>
         <SideBtn active={screen==="matches"} onClick={()=>setScreen("matches")} icon={<Heart/>} label="Matches"/>
+        <SideBtn
+active={screen==="likes"}
+onClick={() => setScreen("likes")}
+icon={<Heart/>}
+label="Likes You"
+/>
         <SideBtn active={screen==="chat"} onClick={()=>setScreen("chat")} icon={<MessageCircle/>} label="Chat"/>
         <SideBtn active={screen==="coach"} onClick={()=>setScreen("coach")} icon={<Brain/>} label="AI Coach"/>
         <SideBtn active={screen==="premium"} onClick={()=>setScreen("premium")} icon={<Crown/>} label="Premium"/>
@@ -890,7 +907,22 @@ alert("It's a match!");
 }
 alert("Like saved");
 };
+function LikesScreen({ likes }) {
+return (
+<section>
+<h1>People Who Like You</h1>
 
+<div className="matchGrid">
+{likes.map((like, index) => (
+<div className="matchCard" key={index}>
+<h3>{like.liker_email}</h3>
+<p>Interested in your profile</p>
+</div>
+))}
+</div>
+</section>
+);
+}
 
 function Matches({ matches, setSelectedMatch, openChat }) {
   return <section>
