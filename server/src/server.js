@@ -5,8 +5,11 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { v4: uuid } = require("uuid");
+const Stripe = require("stripe");
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
+app.use("/stripe-webhook", express.raw({ type: "application/json" }));
 app.use(cors());
 app.use(express.json());
 
@@ -141,3 +144,36 @@ app.post("/safety/report", auth, (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
+
+app.post("/stripe-webhook", (req, res) => {
+const sig = req.headers["stripe-signature"];
+
+let event;
+
+try {
+event = stripe.webhooks.constructEvent(
+req.body,
+sig,
+process.env.STRIPE_WEBHOOK_SECRET
+);
+} catch (err) {
+console.log("Webhook signature failed:", err.message);
+return res.status(400).send(`Webhook Error: ${err.message}`);
+}
+
+if (event.type === "checkout.session.completed") {
+const session = event.data.object;
+
+console.log("Payment successful!");
+console.log(session);
+
+// TODO:
+// Upgrade user subscription here
+}
+
+if (event.type === "customer.subscription.deleted") {
+console.log("Subscription cancelled");
+}
+
+res.json({ received: true });
+});
