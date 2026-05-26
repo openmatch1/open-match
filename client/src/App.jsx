@@ -425,11 +425,15 @@ liked_email: otherEmail
 
 
  function pass() {
-  if (
+ if (
 userPlan === "free" &&
 swipesToday >= FREE_SWIPE_LIMIT
 ) {
-setSwipesToday((s) => s + 1); 
+alert("Daily swipe limit reached. Upgrade to Plus.");
+return;
+}
+
+setSwipesToday((s) => s + 1);
 setProfileIndex((current) => {
 const next =
 current + 1 >= profiles.length
