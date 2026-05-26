@@ -175,6 +175,12 @@ const [profiles, setProfiles] = useState(seedProfiles);
   const [profileIndex, setProfileIndex] = useState(0);
 const [profile, setProfile] = useState(null);
 const [showMatch, setShowMatch] = useState(false);
+  const [filters, setFilters] = useState({
+minAge: 18,
+maxAge: 99,
+city: ""
+});
+
   const [onboarding, setOnboarding] = useState({
 name: "",
 age: "",
@@ -228,15 +234,23 @@ openChemistry: 95,
 sharedInterestScore: 50,
 aiReason: "AI generated compatibility."
 }));
+const filtered = formatted.filter((p) => {
+return (
+p.age >= filters.minAge &&
+p.age <= filters.maxAge &&
+(filters.city === "" ||
+p.city?.toLowerCase().includes(filters.city.toLowerCase()))
+);
+});
 
-setProfiles(formatted);
- setProfile(formatted[0]); 
+setProfiles(filtered);
+setProfile(filtered[0]);
 }
 }
 
 loadProfiles();
 loadMessages();    
-}, []);
+}, [filters]);
 
   const [current, setCurrent] = useState(0);
   const [matches, setMatches] = useState([]);
