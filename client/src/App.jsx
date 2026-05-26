@@ -528,7 +528,7 @@ matches={matches}
 )}
      
         {screen === "coach" && <Coach coachText={coachText} setCoachText={setCoachText} generateCoach={generateCoach} coachAnswer={coachAnswer}/>}
-        {screen === "premium" && <Premium/>}
+        {screen === "premium" && <Premium userPlan={userPlan} />}
         {screen === "profile" && <MyProfile user={user} />}
         {screen === "settings" && (
 <SettingsScreen
@@ -1037,9 +1037,10 @@ function Coach({ coachText, setCoachText, generateCoach, coachAnswer }) {
   </section>
 }
 
-function Premium() {
+function Premium({ userPlan }) {
   return <section>
     <h1>Premium</h1>
+    <p>Your current plan: {userPlan}</p>
     <p>Monetization screen ready for Stripe connection.</p>
     <div className="priceGrid appPrices">
       <Plan name="Free" price="$0" perks={["Limited likes", "Basic profile", "Basic chat"]}/>
