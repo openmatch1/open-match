@@ -143,8 +143,8 @@ app.post("/ai/coach", auth, async (req, res) => {
 app.post("/safety/report", auth, (req, res) => {
   res.json({ received: true, message: "Report received. Add admin moderation dashboard in production." });
 });
-app.post("/stripe-webhook", (req, res) => {
 
+app.post("/stripe-webhook", (req, res) => {
 const sig = req.headers["stripe-signature"];
 
 let event;
@@ -171,12 +171,13 @@ const plan = session.metadata?.plan || "plus";
 
 if (userId) {
 const user = profiles.find(p => p.id === userId);
-  
+
 if (user) {
 user.plan = plan;
 console.log(`User ${userId} upgraded to ${plan}`);
 } else {
 console.log("User not found for upgrade:", userId);
+}
 }
 }
 
@@ -185,7 +186,6 @@ console.log("Subscription cancelled");
 }
 
 res.json({ received: true });
-
+});
 
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
-
