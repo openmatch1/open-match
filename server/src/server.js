@@ -65,7 +65,8 @@ app.post("/auth/register", async (req, res) => {
     interests: [],
     energy: 5,
     communication: "Direct",
-    photos: []
+plan: "free",
+photos: []
   });
 
   const token = jwt.sign({ id, email }, JWT_SECRET);
