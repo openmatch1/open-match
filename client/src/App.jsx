@@ -249,7 +249,9 @@ setProfile(filtered[0]);
 }
 
 loadProfiles();
-loadMessages();    
+loadLikes();
+loadMessages();
+
 }, [filters]);
 
   const [current, setCurrent] = useState(0);
