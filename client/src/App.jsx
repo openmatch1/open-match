@@ -168,9 +168,9 @@ function Plan({ name, price, perks, hot }) {
 onClick={() => {
 const link =
 name === "Elite"
-? "https://buy.stripe.com/test_28E5kD64y9mEa5N5GigYU02"
+? "https://buy.stripe.com/test_fZueVd8cG0Q85Px7OqgYU03"
 : name === "Plus"
-? "https://buy.stripe.com/test_9867sL50u7ewcdV8SugYU01"
+? "https://buy.stripe.com/test_7sYcN550u0Q82Dl9WygYU04"
 : "#";
 
 if (link !== "#") window.open(link, "_blank");
