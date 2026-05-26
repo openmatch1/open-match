@@ -185,7 +185,7 @@ console.log("Subscription cancelled");
 }
 
 res.json({ received: true });
-});
+
 
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
 
