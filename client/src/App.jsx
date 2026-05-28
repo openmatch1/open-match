@@ -1014,12 +1014,10 @@ function Premium({ userPlan }) {
 }
 
 function MyProfile({ user }) {
-const [name, setName] = useState("Anthony")
-const [age, setAge] = useState(27)
+const [name, setName] = useState("")
+const [age, setAge] = useState("")
 const [goal, setGoal] = useState("Serious relationship")
-const [bio, setBio] = useState(
-"Ambitious, loyal, building something real. Looking for chemistry, not a copy of myself."
-)
+const [bio, setBio] = useState("")
 const [avatar, setAvatar] = useState("")
 const uploadPhoto = async (e) => {
 const file = e.target.files[0];
