@@ -175,30 +175,21 @@ console.log("Payment successful for:", customerEmail);
 console.log("Plan:", plan);
 
 if (customerEmail) {
-const response = await fetch(
-`${process.env.SUPABASE_URL}/rest/v1/profiles?email=eq.${customerEmail}`,
-{
-method: "PATCH",
-headers: {
-apikey: process.env.SUPABASE_SERVICE_ROLE_KEY,
-Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
-"Content-Type": "application/json",
-Prefer: "return=representation",
-},
-body: JSON.stringify({ plan }),
-}
-);
+const { data, error } = await supabase
+.from("profiles")
+.update({ plan })
+.eq("email", customerEmail)
+.select();
 
-const data = await response.text();
-console.log("Supabase update response:", data);
+if (error) {
+console.log("Supabase update error:", error);
+} else {
+console.log("Supabase updated profile:", data);
 }
 }
-
-if (event.type === "customer.subscription.deleted") {
-console.log("Subscription cancelled");
 }
 
 res.json({ received: true });
-})
+});
 
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
