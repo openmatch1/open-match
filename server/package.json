@@ -10,6 +10,7 @@
     "express": "latest",
     "jsonwebtoken": "latest",
     "stripe": "latest",
+    "@supabase/supabase-js": "^2.49.8",
     "uuid": "latest"
   },
   "name": "open-match-server"
