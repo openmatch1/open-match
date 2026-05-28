@@ -1044,7 +1044,7 @@ setAvatar(data.publicUrl);
 
 alert("Photo uploaded");
 };
-
+console.log("Current user:", user);
 async function saveProfile() {
 const { error } = await supabase
 .from("profiles")
