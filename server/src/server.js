@@ -7,7 +7,12 @@ const jwt = require("jsonwebtoken");
 const { v4: uuid } = require("uuid");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const { createClient } = require("@supabase/supabase-js");
 
+const supabase = createClient(
+process.env.SUPABASE_URL,
+process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 const app = express();
 app.use("/stripe-webhook", express.raw({ type: "application/json" }));
 app.use(cors());
@@ -144,7 +149,7 @@ app.post("/safety/report", auth, (req, res) => {
   res.json({ received: true, message: "Report received. Add admin moderation dashboard in production." });
 });
 
-app.post("/stripe-webhook", (req, res) => {
+app.post("/stripe-webhook", async (req, res) => {
 const sig = req.headers["stripe-signature"];
 
 let event;
@@ -163,21 +168,29 @@ return res.status(400).send(`Webhook Error: ${err.message}`);
 if (event.type === "checkout.session.completed") {
 const session = event.data.object;
 
-console.log("Payment successful!");
-console.log(session);
-
-const userId = session.metadata?.userId;
+const customerEmail = session.customer_details?.email;
 const plan = session.metadata?.plan || "plus";
 
-if (userId) {
-const user = profiles.find(p => p.id === userId);
+console.log("Payment successful for:", customerEmail);
+console.log("Plan:", plan);
 
-if (user) {
-user.plan = plan;
-console.log(`User ${userId} upgraded to ${plan}`);
-} else {
-console.log("User not found for upgrade:", userId);
+if (customerEmail) {
+const response = await fetch(
+`${process.env.SUPABASE_URL}/rest/v1/profiles?email=eq.${customerEmail}`,
+{
+method: "PATCH",
+headers: {
+apikey: process.env.SUPABASE_SERVICE_ROLE_KEY,
+Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+"Content-Type": "application/json",
+Prefer: "return=representation",
+},
+body: JSON.stringify({ plan }),
 }
+);
+
+const data = await response.text();
+console.log("Supabase update response:", data);
 }
 }
 
@@ -186,6 +199,6 @@ console.log("Subscription cancelled");
 }
 
 res.json({ received: true });
-});
+})
 
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
