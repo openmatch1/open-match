@@ -168,9 +168,9 @@ function Plan({ name, price, perks, hot }) {
 onClick={() => {
 const link =
 name === "Elite"
-? "https://buy.stripe.com/test_fZueVd8cG0Q85Px7OqgYU03"
+? "https://buy.stripe.com/4gM7sMei0eCBc0NFHv9IQ03"
 : name === "Plus"
-? "https://buy.stripe.com/test_7sYcN550u0Q82Dl9WygYU04"
+? "https://buy.stripe.com/9B66oTei03XXgh37aZ9IQ04"
 : "#";
 
 if (link !== "#") window.open(link, "_blank");
@@ -425,13 +425,13 @@ liked_email: otherEmail
 
 
  function pass() {
- if (
+if (
 userPlan === "free" &&
 swipesToday >= FREE_SWIPE_LIMIT
 ) {
 alert("Daily swipe limit reached. Upgrade to Plus.");
+window.location.href = "https://buy.stripe.com/9B66oTei03XXgh37aZ9IQ04";
 return;
- window.location.href = "https://buy.stripe.com/test_XXXXXXXXXXXX";  
 }
 
 setSwipesToday((s) => s + 1);
