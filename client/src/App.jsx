@@ -1019,6 +1019,30 @@ const [age, setAge] = useState("")
 const [goal, setGoal] = useState("Serious relationship")
 const [bio, setBio] = useState("")
 const [avatar, setAvatar] = useState("")
+ useEffect(() => {
+async function loadProfile() {
+if (!user?.email) return;
+
+const { data, error } = await supabase
+.from("profiles")
+.select("*")
+.eq("email", user.email)
+.single();
+
+if (error) {
+console.log("No profile found yet:", error.message);
+return;
+}
+
+setName(data.name || "");
+setAge(data.age || "");
+setGoal(data.intent || "Serious relationship");
+setBio(data.bio || "");
+setAvatar(data.avatar || data.photo || "");
+}
+
+loadProfile();
+}, [user]); 
 const uploadPhoto = async (e) => {
 const file = e.target.files[0];
 
