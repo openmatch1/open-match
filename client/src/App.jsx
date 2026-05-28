@@ -283,7 +283,7 @@ loadMessages();
   const [selectedMatch, setSelectedMatch] = useState(null);
 useEffect(() => {
 async function loadMatches() {
-const myEmail = user?.email || "anthony@test.com";
+const myEmail = user?.email;
 
 const { data } = await supabase
 .from("matches")
@@ -380,7 +380,7 @@ setMatches([profile, ...matches]);
 }
 
 const otherEmail = profile.name + "@openmatch.ai";
-const myEmail = "anthony@test.com";
+const myEmail = user?.email;
 
 const { data: existingLikes, error: checkError } =
 await supabase
@@ -459,8 +459,8 @@ setMessages([...messages, newMessage]);
 
 await supabase.from("messages").insert([
 {
-sender_email: "anthony@test.com",
-receiver_email: "mia@openmatch.ai",
+sender_email: user?.email,
+receiver_email: selectedMatch?.user_two,
 message: chatText
 }
 ]);
@@ -501,6 +501,7 @@ label="Likes You"
       <main className="appMain">
         {screen === "onboarding" && (
 <Onboarding
+user={user}
 onboarding={onboarding}
 setOnboarding={setOnboarding}
 finish={() => setScreen("discover")}
@@ -541,7 +542,7 @@ setFilters={setFilters}
     </div>
   );
 }
-function Onboarding({ onboarding, setOnboarding, finish }) {
+function Onboarding({ user, onboarding, setOnboarding, finish }) {
 return (
 <section className="onboarding">
 <div className="glassCard onboardingCard">
@@ -631,7 +632,7 @@ supabase.storage
 .data.publicUrl;
 await supabase.from("profiles").insert([
 {
-email: onboarding.name + "@openmatch.ai",
+email: user?.email,
 plan: "free", 
 name: onboarding.name,
 age: Number(onboarding.age),
@@ -903,46 +904,7 @@ setDragX(0);
 </section>
 );
 }
-const currentUser = {
-id: "00000000-0000-0000-0000-000000000001"
-};
 
-const handleLike = async (likedUser) => {
-if (!likedUser?.id) {
-alert("No profile selected");
-return;
-}
-
-const { error } = await supabase.from("likes").insert({
-liker_email: user?.email,
-liked_email: likedUser.email || likedUser.id || likedUser.name
-});
-
-if (error) {
-console.error("Like error:", error);
-alert("Like did not save");
-return;
-}
-const { data: existingLike } = await supabase
-.from("likes")
-.select("*")
-.eq(
-"liker_email",
-likedUser.email || likedUser.id || likedUser.name
-)
-.eq("liked_email", user?.email)
-.single();
-
-if (existingLike) {
-await supabase.from("matches").insert({
-user1_id: user?.email,
-user2_id: likedUser.email || likedUser.id || likedUser.name
-});
-
-alert("It's a match!");
-}
-alert("Like saved");
-};
 function LikesScreen({ likes }) {
 return (
 <section>
