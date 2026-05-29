@@ -137,13 +137,33 @@ app.post("/messages/:matchId", auth, (req, res) => {
 });
 
 app.post("/ai/coach", auth, async (req, res) => {
-  // Production: connect OpenAI here on the server only.
-  // Never expose API keys in frontend code.
-  const { situation } = req.body;
-  res.json({
-    answer: `Keep it confident, respectful, and simple. Based on: "${situation}", send a message that shows interest without chasing.`
-  });
+try {
+const { situation } = req.body;
+
+const response = await fetch("https://api.openai.com/v1/responses", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+},
+body: JSON.stringify({
+model: "gpt-4.1-mini",
+input: `You are an expert dating coach. Give practical, confident, respectful dating advice. Situation: ${situation}`
+})
 });
+
+const data = await response.json();
+
+res.json({
+answer: data.output_text || "Unable to generate advice."
+});
+} catch (err) {
+console.error("AI Coach error:", err);
+res.status(500).json({
+answer: "AI Coach error."
+});
+}
+})
 
 app.post("/safety/report", auth, (req, res) => {
   res.json({ received: true, message: "Report received. Add admin moderation dashboard in production." });
