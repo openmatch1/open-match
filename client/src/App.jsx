@@ -1034,17 +1034,51 @@ window.location.href = data.url;
 alert(data.error || "Could not open subscription portal");
 }
 }
-  return <section>
-    <h1>Premium</h1>
-    <p>Your current plan: {userPlan}</p>
-    <p>Monetization screen ready for Stripe connection.</p>
-    <div className="priceGrid appPrices">
-      <Plan name="Free" price="$0" perks={["Limited likes", "Basic profile", "Basic chat"]}/>
-      <Plan name="Plus" price="$19/mo" perks={["Unlimited likes", "Rewind", "AI icebreakers", "Open Chemistry filters"]} hot/>
-      <Plan name="Elite" price="$49/mo" perks={["Boost mode", "See who likes you", "Priority discovery", "Advanced AI coach"]}/>
-    </div>
-  </section>
-}
+  return (
+<section>
+<h1>Premium</h1>
+
+<p>Your current plan: {userPlan}</p>
+<p>Monetization screen ready for Stripe connection.</p>
+
+<div className="priceGrid appPrices">
+<Plan
+name="Free"
+price="$0"
+perks={["Limited likes", "Basic profile", "Basic chat"]}
+/>
+
+<Plan
+name="Plus"
+price="$19/mo"
+perks={[
+"Unlimited likes",
+"Rewind",
+"AI icebreakers",
+"Open Chemistry filters"
+]}
+hot
+/>
+
+<Plan
+name="Elite"
+price="$49/mo"
+perks={[
+"Boost mode",
+"See who likes you",
+"Priority discovery",
+"Advanced AI coach"
+]}
+/>
+</div>
+
+{userPlan !== "free" && (
+<button onClick={manageSubscription}>
+Manage Subscription
+</button>
+)}
+</section>
+);
 
 function MyProfile({ user }) {
 const [name, setName] = useState("")
