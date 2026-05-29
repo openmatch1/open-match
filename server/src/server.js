@@ -285,8 +285,14 @@ reply: data.error?.message || "OpenAI API error."
 });
 }
 
+const aiText =
+data.output_text ||
+data.output?.[0]?.content?.[0]?.text ||
+data.output?.[0]?.content?.[0]?.text?.value ||
+"No AI response came back.";
+
 res.json({
-reply: data.output_text || "No AI response came back."
+reply: aiText
 });
 
 } catch (err) {
