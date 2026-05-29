@@ -1159,9 +1159,11 @@ return (
 <p>Monetization screen ready for Stripe connection.</p>
 
 <div className="priceGrid appPrices">
-<Plan name="Free" price="$0" perks={["Limited likes", "Basic profile", "Basic chat"]} />
-<Plan name="Plus" price="$19/mo" perks={["Unlimited likes", "Rewind", "AI icebreakers", "Open Chemistry filters"]} hot />
-<Plan name="Elite" price="$49/mo" perks={["Boost mode", "See who likes you", "Priority discovery", "Advanced AI coach"]} />
+<Plan name="Free" price="$0" perks={["Limited likes", "Basic profile", "Basic chat"]} userPlan={userPlan} />
+
+<Plan name="Plus" price="$19/mo" perks={["Unlimited likes", "Rewind", "AI icebreakers", "Open Chemistry filters"]} hot userPlan={userPlan} />
+
+<Plan name="Elite" price="$49/mo" perks={["Boost mode", "See who likes you", "Priority discovery", "Advanced AI coach"]} userPlan={userPlan} />
 </div>
 {userPlan === "elite" && (
 <button className="primary" onClick={activateBoost}>
