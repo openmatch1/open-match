@@ -386,7 +386,14 @@ supabase.removeChannel(channel);
   const [coachAnswer, setCoachAnswer] = useState("");
 
 async function like(superLike=false) {
-
+if (
+userPlan === "free" &&
+swipesToday >= FREE_SWIPE_LIMIT
+) {
+alert("Daily swipe limit reached. Upgrade to Plus.");
+setScreen("premium");
+return;
+}
 const shouldMatch =
 superLike || profile.openChemistry > 90;
 
@@ -448,7 +455,7 @@ userPlan === "free" &&
 swipesToday >= FREE_SWIPE_LIMIT
 ) {
 alert("Daily swipe limit reached. Upgrade to Plus.");
-window.location.href = "https://buy.stripe.com/9B66oTei03XXgh37aZ9IQ04";
+setScreen("premium");
 return;
 }
 
