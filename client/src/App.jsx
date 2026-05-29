@@ -182,7 +182,7 @@ if (link !== "#") window.open(link, "_blank");
 }
 
 function AppShell({ user }) {
- const [screen, setScreen] = useState("onboarding");
+ const [screen, setScreen] = useState("discover");
 const [profiles, setProfiles] = useState(seedProfiles);
   const [userPlan, setUserPlan] = useState("free");
   console.log("USER OBJECT:", user);
@@ -280,10 +280,14 @@ const currentUser = formatted.find(
 (p) => p.email === user?.email
 );
 
+if (currentUser) {
+setScreen("discover");
+setProfile(currentUser);
+}
+
 if (currentUser?.plan) {
 setUserPlan(currentUser.plan);
 }
-
 setProfiles(filtered);
 setProfile(filtered[0]);
 }
