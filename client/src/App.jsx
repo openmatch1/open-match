@@ -185,6 +185,23 @@ function AppShell({ user }) {
  const [screen, setScreen] = useState("onboarding");
 const [profiles, setProfiles] = useState(seedProfiles);
   const [userPlan, setUserPlan] = useState("free");
+  useEffect(() => {
+async function loadUserPlan() {
+if (!user?.email) return;
+
+const { data, error } = await supabase
+.from("profiles")
+.select("plan")
+.eq("email", user.email)
+.single();
+
+if (!error && data?.plan) {
+setUserPlan(data.plan);
+}
+}
+
+loadUserPlan();
+}, [user]);
   const [messages, setMessages] = useState([]);
   const [profileIndex, setProfileIndex] = useState(0);
   const [swipesToday, setSwipesToday] = useState(0);
