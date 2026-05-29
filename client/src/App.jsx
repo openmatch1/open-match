@@ -185,6 +185,7 @@ function AppShell({ user }) {
  const [screen, setScreen] = useState("onboarding");
 const [profiles, setProfiles] = useState(seedProfiles);
   const [userPlan, setUserPlan] = useState("free");
+  console.log("USER OBJECT:", user);
   useEffect(() => {
 async function loadUserPlan() {
 if (!user?.email) return;
