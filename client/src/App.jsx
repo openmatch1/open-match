@@ -301,8 +301,8 @@ return 0;
 });
 
 
-setProfiles(sorted);
-setProfile(sorted[0]);
+setProfiles(filtered);
+setProfile(filtered[0]);
 }
 }
 
