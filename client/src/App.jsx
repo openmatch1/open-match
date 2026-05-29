@@ -597,13 +597,15 @@ setOnboarding={setOnboarding}
 finish={() => setScreen("discover")}
 />
 )}
-       <Discover
+  {screen === "discover" && (
+<Discover
 profile={profile}
 like={like}
 pass={pass}
 rewind={rewind}
 userPlan={userPlan}
 />
+)}     
        {screen === "matches" && (
 <Matches
 matches={matches}
