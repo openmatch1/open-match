@@ -212,5 +212,29 @@ console.log("Supabase downgraded profile:", data);
 }
 res.json({ received: true });
 });
+app.post("/create-portal-session", async (req, res) => {
+try {
+const { email } = req.body;
+
+const customers = await stripe.customers.list({
+email,
+limit: 1,
+});
+
+if (!customers.data.length) {
+return res.status(404).json({ error: "No Stripe customer found" });
+}
+
+const portalSession = await stripe.billingPortal.sessions.create({
+customer: customers.data[0].id,
+return_url: "https://open-match-frontend.onrender.com",
+});
+
+res.json({ url: portalSession.url });
+} catch (err) {
+console.log("Portal session error:", err);
+res.status(500).json({ error: "Could not create portal session" });
+}
+})
 
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
