@@ -1046,8 +1046,24 @@ setText("");
   </section>
 }
 
-function Coach({ coachText, setCoachText, generateCoach, coachAnswer }) {
-  return <section>
+function Coach({ coachText, setCoachText, generateCoach, coachAnswer, userPlan, setPage }) {
+const isElite = userPlan === "elite";
+
+if (!isElite) {
+return (
+<section>
+<h1>AI Dating Coach</h1>
+<div className="lockedCard">
+<Lock />
+<h2>Elite Only</h2>
+<p>Advanced AI Coach is only available for Elite members.</p>
+<button className="primary" onClick={() => setPage("premium")}>
+Upgrade to Elite
+</button>
+</div>
+</section>
+);
+}
     <h1>AI Dating Coach</h1>
     <p>Get help with texting, profiles, red flags, date ideas, and confidence.</p>
     <textarea value={coachText} onChange={e=>setCoachText(e.target.value)} placeholder="Example: What should I say after matching with someone who seems very different from me?" />
