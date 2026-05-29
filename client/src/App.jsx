@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import { createClient } from '@supabase/supabase-js'
-const API_URL = "http://localhost:5050";
+const API_URL = "https://open-match-backend.onrender.com";
 const supabase = createClient(
 import.meta.env.VITE_SUPABASE_URL,
 import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
