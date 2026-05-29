@@ -1079,7 +1079,7 @@ const { error } = await supabase
 name,
 age,
 bio,
-photo: avatar,
+avatar,
 city,
 email: user?.email,
 interests: ["business", "fitness", "travel"]
