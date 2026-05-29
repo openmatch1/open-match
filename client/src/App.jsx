@@ -12,72 +12,8 @@ const supabase = createClient(
 import.meta.env.VITE_SUPABASE_URL,
 import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
 )
-const seedProfiles = [
-  {
-    id: "p1",
-    name: "Ariana",
-    age: 27,
-    city: "Orlando, FL",
-    distance: "8 miles away",
-    vibe: "Bold, funny, loyal",
-    intent: "Long-term",
-    photos: ["https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"],
-    bio: "I like ambition, deep talks, good food, and people who actually know what they want.",
-    prompts: ["Best Sunday: beach, brunch, and no drama.", "Green flag: consistency."],
-    interests: ["Business", "Fitness", "Travel"],
-    openChemistry: 97,
-    sharedInterestScore: 21,
-    aiReason: "Not a clone of your interests — high contrast chemistry. Your drive balances her creative confidence."
-  },
-  {
-    id: "p2",
-    name: "Mia",
-    age: 25,
-    city: "Tampa, FL",
-    distance: "42 miles away",
-    vibe: "Sweet, adventurous, confident",
-    intent: "Serious relationship",
-    photos: ["https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=80"],
-    bio: "I’m into spontaneous trips, family, music, and building a peaceful life.",
-    prompts: ["My simple pleasure: night drives.", "Date idea: sushi and arcade."],
-    interests: ["Music", "Family", "Adventure"],
-    openChemistry: 92,
-    sharedInterestScore: 34,
-    aiReason: "Different interests, same emotional direction. Strong lifestyle curiosity match."
-  },
-  {
-    id: "p3",
-    name: "Natalia",
-    age: 29,
-    city: "Miami, FL",
-    distance: "190 miles away",
-    vibe: "Elegant, driven, direct",
-    intent: "Marriage-minded",
-    photos: ["https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80"],
-    bio: "I love high standards, travel, fitness, and people with vision.",
-    prompts: ["I’m impressed by: discipline.", "Don’t match if: you hate honesty."],
-    interests: ["Luxury travel", "Fitness", "Real estate"],
-    openChemistry: 89,
-    sharedInterestScore: 67,
-    aiReason: "High ambition match with enough difference to keep curiosity alive."
-  },
-  {
-    id: "p4",
-    name: "Sophia",
-    age: 24,
-    city: "Ocala, FL",
-    distance: "14 miles away",
-    vibe: "Creative, soft, spiritual",
-    intent: "Friendship first",
-    photos: ["https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=900&q=80"],
-    bio: "Painter, dog mom, slow mornings, coffee, and old movies.",
-    prompts: ["Random skill: I can paint anything.", "Ideal date: farmers market."],
-    interests: ["Art", "Dogs", "Coffee"],
-    openChemistry: 95,
-    sharedInterestScore: 8,
-    aiReason: "Opposite-world chemistry. The system thinks curiosity could beat common interests here."
-  }
-];
+const seedProfiles = [];
+  
 
 const fakeMessages = [
   { from: "them", text: "Hey, your profile actually feels real 😂" },
