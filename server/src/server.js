@@ -261,33 +261,38 @@ try {
 const { message } = req.body;
 
 if (!message) {
-return res.status(400).json({
-reply: "Please enter a message."
-});
+return res.status(400).json({ reply: "Please enter a message." });
 }
 
 const response = await fetch("https://api.openai.com/v1/responses", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
-"Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
 },
 body: JSON.stringify({
 model: "gpt-4.1-mini",
-input: `You are the AI dating coach for Open Match. Help the user write a better dating message. Be confident, smooth, respectful, and not creepy. User said: ${message}`
+input: `You are the AI dating coach for Open Match. Give a short, smooth, respectful message suggestion. User needs help with: ${message}`
 })
 });
 
 const data = await response.json();
 
+if (!response.ok) {
+console.log("OpenAI API error:", data);
+return res.status(500).json({
+reply: data.error?.message || "OpenAI API error."
+});
+}
+
 res.json({
-reply: data.output_text || "Sorry, I couldn't think of a good reply."
+reply: data.output_text || "No AI response came back."
 });
 
 } catch (err) {
 console.log("AI Coach error:", err);
 res.status(500).json({
-reply: "AI Coach is having trouble right now."
+reply: "AI Coach server error."
 });
 }
 });
