@@ -1208,9 +1208,7 @@ onChange={(e) =>
 setFilters({ ...filters, city: e.target.value })
 }
 />
-      <button>Block List</button>
-      <button>Report a User</button>
-      <button>Delete Account</button>
+      
     </div>
   </section>
 }
