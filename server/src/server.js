@@ -236,5 +236,17 @@ console.log("Portal session error:", err);
 res.status(500).json({ error: "Could not create portal session" });
 }
 })
+app.post("/api/coach", async (req, res) => {
+const { message } = req.body;
 
+if (!message) {
+return res.status(400).json({
+reply: "Please enter a message."
+});
+}
+
+res.json({
+reply: `AI Coach suggestion: "${message}"`
+});
+});
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
