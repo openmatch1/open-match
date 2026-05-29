@@ -629,7 +629,8 @@ text={chatText}
 setText={setChatText}
 user={user}
 matches={matches}
-  selectedMatch={selectedMatch} 
+  selectedMatch={selectedMatch}
+  userPlan={userPlan}
 />
 )}
      
@@ -875,7 +876,7 @@ Message
   </section>
 }
 
-function Chat({ messages, setMessages, text, setText, user, matches, selectedMatch }) {
+function Chat({ messages, setMessages, text, setText, user, matches, selectedMatch, userPlan })
   const sendMessage = async () => {
 if (!text.trim()) return;
 
@@ -912,10 +913,16 @@ setText("");
       <input value={text} onChange={e=>setText(e.target.value)} placeholder="Write a message..." />
       <button onClick={sendMessage}><Send/></button>
     </div>
-    <div className="promptBox">
-      <strong>AI Icebreaker:</strong> Ask something emotionally specific, not boring. Example:
-      “What kind of relationship makes you feel safe but still excited?”
-    </div>
+    {(userPlan === "plus" || userPlan === "elite") ? (
+<div className="promptBox">
+<strong>AI Icebreaker:</strong> Ask something emotionally specific, not boring. Example: “What kind of relationship makes you feel safe but still excited?”
+</div>
+) : (
+<div className="promptBox lockedCard">
+<strong>AI Icebreaker Locked</strong>
+<p>Upgrade to Plus to unlock AI icebreaker suggestions.</p>
+</div>
+)}
   </section>
 }
 
