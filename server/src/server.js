@@ -221,6 +221,34 @@ console.log("Supabase updated profile:", data);
 }
 }
 }
+if (event.type === "customer.subscription.updated") {
+const subscription = event.data.object;
+
+const customer = await stripe.customers.retrieve(subscription.customer);
+const customerEmail = customer.email;
+
+const priceId = subscription.items.data[0]?.price?.id;
+
+const plan =
+priceId === process.env.STRIPE_ELITE_PRICE_ID ? "elite" : "plus";
+
+console.log("Subscription updated for:", customerEmail);
+console.log("New plan:", plan);
+
+if (customerEmail) {
+const { data, error } = await supabase
+.from("profiles")
+.update({ plan })
+.eq("email", customerEmail)
+.select();
+
+if (error) {
+console.log("Supabase subscription update error:", error);
+} else {
+console.log("Supabase subscription updated profile:", data);
+}
+}
+}  
 if (event.type === "customer.subscription.deleted") {
 const subscription = event.data.object;
 
