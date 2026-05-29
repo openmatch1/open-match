@@ -255,11 +255,11 @@ id: "real-" + index,
 name: p.name || "Unknown",
 age: p.age || 18,
 city: p.city || "Unknown",
-distance: "5 miles away",
+distance: "",
 vibe: "Real user",
-intent: "Relationship",
-photos: p.photo && p.photo.startsWith("http")
-? [p.photo]
+intent: p.intent || "Relationship",
+photos: p.avatar && p.avatar.startsWith("http")
+? [p.avatar]
 : ["https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80"],
 bio: p.bio || "",
 prompts: [],
@@ -1018,7 +1018,22 @@ function Coach({ coachText, setCoachText, generateCoach, coachAnswer }) {
   </section>
 }
 
-function Premium({ userPlan }) {
+function Premium({ userPlan, user }) {
+  async function manageSubscription() {
+const res = await fetch(`${API_URL}/create-portal-session`, {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({ email: user?.email }),
+});
+
+const data = await res.json();
+
+if (data.url) {
+window.location.href = data.url;
+} else {
+alert(data.error || "Could not open subscription portal");
+}
+}
   return <section>
     <h1>Premium</h1>
     <p>Your current plan: {userPlan}</p>
@@ -1159,9 +1174,13 @@ placeholder="City, State"
 value={goal}
 onChange={(e) => setGoal(e.target.value)}
 >
-<option>Serious relationship</option>
+<option>Relationship</option>
 <option>Marriage-minded</option>
 <option>Casual dating</option>
+<option>Hook-up</option>
+<option>Friendship</option>
+<option>Business networking</option>
+<option>Partner</option>
 </select>
 
 <label>Bio</label>
