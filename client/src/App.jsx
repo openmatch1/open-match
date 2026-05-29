@@ -876,7 +876,7 @@ Message
   </section>
 }
 
-function Chat({ messages, setMessages, text, setText, user, matches, selectedMatch, userPlan })
+function Chat({ messages, setMessages, text, setText, user, matches, selectedMatch, userPlan }) {
   const sendMessage = async () => {
 if (!text.trim()) return;
 
