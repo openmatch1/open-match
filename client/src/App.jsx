@@ -266,7 +266,7 @@ prompts: [],
 interests: Array.isArray(p.interests) ? p.interests : [],
 openChemistry: 95,
 sharedInterestScore: 50,
-aiReason: "AI generated compatibility."
+aiReason: "AI generated compatibility.",
 }));
 const filtered = formatted.filter((p) => {
 return (
