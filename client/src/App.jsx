@@ -267,6 +267,7 @@ interests: Array.isArray(p.interests) ? p.interests : [],
 openChemistry: 95,
 sharedInterestScore: 50,
 aiReason: "AI generated compatibility."
+ boost_until: p.boost_until, 
 }));
 const filtered = formatted.filter((p) => {
 return (
@@ -288,8 +289,19 @@ setProfile(currentUser);
 if (currentUser?.plan) {
 setUserPlan(currentUser.plan);
 }
-setProfiles(filtered);
-setProfile(filtered[0]);
+const now = new Date();
+
+const sorted = filtered.sort((a, b) => {
+const aBoosted = a.boost_until && new Date(a.boost_until) > now;
+const bBoosted = b.boost_until && new Date(b.boost_until) > now;
+
+if (aBoosted && !bBoosted) return -1;
+if (!aBoosted && bBoosted) return 1;
+return 0;
+});
+
+setProfiles(sorted);
+setProfile(sorted[0]);
 }
 }
 
