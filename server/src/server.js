@@ -237,6 +237,7 @@ res.status(500).json({ error: "Could not create portal session" });
 }
 })
 app.post("/api/coach", async (req, res) => {
+try {
 const { message } = req.body;
 
 if (!message) {
@@ -245,8 +246,29 @@ reply: "Please enter a message."
 });
 }
 
-res.json({
-reply: `AI Coach suggestion: "${message}"`
+const response = await fetch("https://api.openai.com/v1/responses", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+},
+body: JSON.stringify({
+model: "gpt-4.1-mini",
+input: `You are the AI dating coach for Open Match. Help the user write a better dating message. Be confident, smooth, respectful, and not creepy. User said: ${message}`
+})
 });
+
+const data = await response.json();
+
+res.json({
+reply: data.output_text || "Sorry, I couldn't think of a good reply."
+});
+
+} catch (err) {
+console.log("AI Coach error:", err);
+res.status(500).json({
+reply: "AI Coach is having trouble right now."
+});
+}
 });
 app.listen(PORT, () => console.log(`Open Match API running on port ${PORT}`));
