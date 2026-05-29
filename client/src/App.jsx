@@ -1222,6 +1222,63 @@ Terms of Service
     </div>
   </section>
 }
+function PrivacyPolicy({ setScreen }) {
+return (
+<section>
+<h1>Privacy Policy</h1>
+
+<p>Open Match respects your privacy.</p>
+
+<p>
+We collect account information, profile information,
+photos, messages, and subscription information in order
+to provide the Open Match service.
+</p>
+
+<p>
+We do not sell your personal information.
+</p>
+
+<p>
+You may request account deletion at any time.
+</p>
+
+<button onClick={() => setScreen("settings")}>
+Back to Settings
+</button>
+</section>
+);
+}
+function TermsPage({ setScreen }) {
+return (
+<section>
+<h1>Terms of Service</h1>
+
+<p>
+You must be at least 18 years old to use Open Match.
+</p>
+
+<p>
+Users are responsible for their profile content,
+messages, and behavior.
+</p>
+
+<p>
+Harassment, spam, fraud, and illegal activity are
+prohibited.
+</p>
+
+<p>
+Open Match may suspend or terminate accounts that
+violate these terms.
+</p>
+
+<button onClick={() => setScreen("settings")}>
+Back to Settings
+</button>
+</section>
+);
+}
 function AuthScreen({ setUser }) {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
