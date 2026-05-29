@@ -189,8 +189,21 @@ if (event.type === "checkout.session.completed") {
 const session = event.data.object;
 
 const customerEmail = session.customer_details?.email;
-const plan = session.metadata?.plan || "plus";
+let plan = session.metadata?.plan;
 
+if (!plan) {
+const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
+limit: 1,
+});
+
+const priceId = lineItems.data[0]?.price?.id;
+
+if (priceId === process.env.STRIPE_ELITE_PRICE_ID) {
+plan = "elite";
+} else {
+plan = "plus";
+}
+}
 console.log("Payment successful for:", customerEmail);
 console.log("Plan:", plan);
 
