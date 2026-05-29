@@ -641,6 +641,7 @@ matches={matches}
 <SettingsScreen
 filters={filters}
 setFilters={setFilters}
+  userPlan={userPlan}
 />
 )}
       </main>
@@ -1174,7 +1175,8 @@ Save Profile
 )
 }
 
-function SettingsScreen({ filters, setFilters }) {
+function SettingsScreen({ filters, setFilters, userPlan }) {
+  const isPremium = userPlan === "plus" || userPlan === "elite";
   return <section>
     <h1>Settings & Safety</h1>
     <div className="settingsPanel">
@@ -1182,6 +1184,7 @@ function SettingsScreen({ filters, setFilters }) {
 <input
 type="number"
 value={filters.minAge}
+  disabled={!isPremium}
 onChange={(e) =>
 setFilters({ ...filters, minAge: Number(e.target.value) })
 }
@@ -1191,6 +1194,7 @@ setFilters({ ...filters, minAge: Number(e.target.value) })
 <input
 type="number"
 value={filters.maxAge}
+ disabled={!isPremium} 
 onChange={(e) =>
 setFilters({ ...filters, maxAge: Number(e.target.value) })
 }
@@ -1199,6 +1203,7 @@ setFilters({ ...filters, maxAge: Number(e.target.value) })
 <label>City</label>
 <input
 value={filters.city}
+ disabled={!isPremium} 
 onChange={(e) =>
 setFilters({ ...filters, city: e.target.value })
 }
