@@ -741,8 +741,7 @@ function SideBtn({ active, onClick, icon, label }) {
   return <button className={"sideBtn " + (active ? "active" : "")} onClick={onClick}>{icon}<span>{label}</span></button>
 }
 
-function Discover({ profile, like, pass }) {
-
+function Discover({ profile, like, pass, rewind, userPlan, canRewind }) {
 if (!profile) {
 return <section><h1>Loading profiles...</h1></section>;
 }
@@ -750,240 +749,49 @@ return <section><h1>Loading profiles...</h1></section>;
 const photo =
 profile.photos?.[0] ||
 "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80";
-const [dragX, setDragX] = useState(0);
-const handleDragStart = (e) => {
-const startX = e.clientX || e.touches?.[0]?.clientX;
 
-const move = (moveEvent) => {
-const currentX =
-moveEvent.clientX || moveEvent.touches?.[0]?.clientX;
+const canUseRewind = userPlan === "plus" || userPlan === "elite";
 
-setDragX(currentX - startX);
-};
-
-const end = () => {
-if (dragX > 120) {
-like(profile);
-} else if (dragX < -120) {
-pass();
-}
-
-setDragX(0);
-
-window.removeEventListener("mousemove", move);
-window.removeEventListener("mouseup", end);
-window.removeEventListener("touchmove", move);
-window.removeEventListener("touchend", end);
-};
-
-window.addEventListener("mousemove", move);
-window.addEventListener("mouseup", end);
-window.addEventListener("touchmove", move);
-window.addEventListener("touchend", end);
-};
-  
 return (
 <section className="discover">
-
-<div className="discoverTop">
-<div>
 <h1>Discover</h1>
-<p>Open Chemistry mode: match beyond identical interests.</p>
-</div>
 
-<button className="filterBtn">
-<Search/> Filters
-</button>
-</div>
+<div className="profileCard">
+<img src={photo} alt={profile.name} />
 
-<div className="swipeWrap">
-<div
-className="stackCard stackCardTwo"
-style={{
-transform: `scale(0.92) translateY(${40 - Math.abs(dragX) * 0.05}px) translateX(36px) rotate(6deg)`
-}}
-></div>
-
-<div
-className="stackCard stackCardOne"
-style={{
-transform: `scale(0.96) translateY(${20 - Math.abs(dragX) * 0.03}px) translateX(18px) rotate(3deg)`
-}}
-></div>
-<div
-className="swipeCard"
-style={{
-backgroundImage: `linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,.15)), url(${photo})`,
-backgroundSize: "cover",
-backgroundPosition: "center",
-height: "620px",
-borderRadius: "24px",
-overflow: "hidden",
-position: "relative",
-transform: `translateX(${dragX}px) rotate(${dragX / 20}deg)`,
-transition: dragX === 0 ? "0.3s ease" : "none",
-}}
-onMouseDown={handleDragStart}
-onTouchStart={handleDragStart}  
->
-
-<div
-className="swipeInfo"
-style={{
-position: "absolute",
-bottom: 0,
-left: 0,
-right: 0,
-padding: "24px"
-}}
->
-{dragX > 40 && (
-<div
-style={{
-position: "absolute",
-top: 30,
-right: 30,
-padding: "12px 24px",
-border: "4px solid #5dff9b",
-color: "#5dff9b",
-fontWeight: 900,
-fontSize: "32px",
-borderRadius: "18px",
-transform: "rotate(12deg)",
-background: "rgba(0,0,0,0.45)"
-}}
->
-LIKE
-</div>
-)}
-
-{dragX < -40 && (
-<div
-style={{
-position: "absolute",
-top: 30,
-left: 30,
-padding: "12px 24px",
-border: "4px solid #ff5c5c",
-color: "#ff5c5c",
-fontWeight: 900,
-fontSize: "32px",
-borderRadius: "18px",
-transform: "rotate(-12deg)",
-background: "rgba(0,0,0,0.45)"
-}}
->
-NOPE
-</div>
-)}
-
+<div className="profileInfo">
 <h2>{profile.name}, {profile.age}</h2>
-
-<p>
-<MapPin size={15}/> {profile.city} • {profile.distance}
-</p>
-
-<p className="bio">{profile.bio}</p>
-
-<div className="tagRow">
-<span>{profile.intent}</span>
-<span>{profile.vibe}</span>
-
-{profile.interests.map(i =>
-<span key={i}>{i}</span>
-)}
+<p>{profile.bio}</p>
+<p>{profile.city}</p>
+<p>Open Chemistry: {profile.openChemistry}%</p>
+</div>
 </div>
 
-</div>
-
-</div>
-
-<div className="aiPanel">
-
-<p className="pill">
-<Brain size={16}/> AI Chemistry
-</p>
-
-<h3>{profile.openChemistry}% Open Chemistry</h3>
-
-<div className="progress">
-<div style={{width: profile.openChemistry + "%"}}></div>
-</div>
-
-<p>
-<strong>Shared interest score:</strong>
-{" "}
-{profile.sharedInterestScore}%
-</p>
-
-<p>{profile.aiReason}</p>
-
-<div className="promptBox">
-<strong>AI opener:</strong>
-
-<p>
-{
-profile.openChemistry > 90
-? "You honestly seem refreshing compared to most people on here."
-: profile.sharedInterestScore > 50
-? "I feel like we'd either click instantly or debate for hours."
-: "You seem like someone I'd actually remember after one conversation."
+<div className="actionRow">
+<button
+onClick={() => {
+if (!canUseRewind) {
+alert("Rewind is for Plus and Elite members.");
+return;
 }
-</p>
-</div>
-
-<div className="actions">
-<button
-className="no"
-onClick={() => {
-setDragX(-220);
-setTimeout(() => {
-pass();
-setDragX(0);
-}, 220);
+rewind();
 }}
 >
-<X/>
+↩ Rewind
 </button>
 
-<button
-className="super"
-onClick={() => {
-setDragX(220);
-setTimeout(() => {
-like(true);
-pass();
-setDragX(0);
-}, 220);
-}}
->
-<Star/>
+<button onClick={pass}>
+✕ Pass
 </button>
 
-<button
-className="yes"
-onClick={() => {
-setDragX(220);
-
-setTimeout(() => {
-like(false);
-pass();
-setDragX(0);
-}, 220);
-}}
->
-
-<Heart />
+<button onClick={() => like(profile)}>
+♥ Like
 </button>
 </div>
-
-</div>
-
-</div>
-
 </section>
 );
 }
+
 
 function LikesScreen({ likes, userPlan, setPage }) {
 const isElite = userPlan === "elite";
