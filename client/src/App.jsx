@@ -503,10 +503,31 @@ message: chatText
 setChatText("");
 }
 
-  function generateCoach() {
-    if (!coachText.trim()) return;
-    setCoachAnswer("Say it confident and simple. Try: “I like your vibe. I’d rather actually meet than text forever — are you free this week for coffee or dinner?”");
-  }
+async function generateCoach() {
+if (!coachText.trim()) return;
+
+setCoachAnswer("Thinking...");
+
+try {
+const res = await fetch(`${API_URL}/api/coach`, {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+message: coachText,
+userEmail: user?.email
+})
+});
+
+const data = await res.json();
+
+setCoachAnswer(data.reply || "I couldn't generate a response.");
+} catch (err) {
+console.error(err);
+setCoachAnswer("AI Coach is not connected yet. Check the backend.");
+}
+}  
 
   return (
     <div className="app">
