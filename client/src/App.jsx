@@ -961,8 +961,25 @@ setDragX(0);
 );
 }
 
-function LikesScreen({ likes }) {
+function LikesScreen({ likes, userPlan, setPage }) {
+const isElite = userPlan === "elite";
+
+if (!isElite) {
 return (
+<section>
+<h1>People Who Like You</h1>
+<div className="lockedCard">
+<Lock />
+<h2>Elite Only</h2>
+<p>See who likes you is only available for Elite members.</p>
+<button className="primary" onClick={() => setPage("premium")}>
+Upgrade to Elite
+</button>
+</div>
+</section>
+);
+}
+  return (
 <section>
 <h1>People Who Like You</h1>
 
