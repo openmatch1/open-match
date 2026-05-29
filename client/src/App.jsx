@@ -585,7 +585,7 @@ matches={matches}
 />
 )}
      
-        {screen === "coach" && <Coach coachText={coachText} setCoachText={setCoachText} generateCoach={generateCoach} coachAnswer={coachAnswer}/>}
+        {screen === "coach" && <Coach coachText={coachText} setCoachText={setCoachText} generateCoach={generateCoach} coachAnswer={coachAnswer} userPlan={userPlan} setPage={setScreen}/>}
         {screen === "premium" && <Premium userPlan={userPlan} user={user} />}
         {screen === "profile" && <MyProfile user={user} />}
         {screen === "settings" && (
