@@ -1179,7 +1179,7 @@ Save Profile
 )
 }
 
-function SettingsScreen({ filters, setFilters, userPlan, setScreen })
+function SettingsScreen({ filters, setFilters, userPlan, setScreen }) {
   const isPremium = userPlan === "plus" || userPlan === "elite";
   return <section>
     <h1>Settings & Safety</h1>
