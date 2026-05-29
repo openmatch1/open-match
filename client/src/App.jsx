@@ -641,9 +641,13 @@ matches={matches}
 <SettingsScreen
 filters={filters}
 setFilters={setFilters}
-  userPlan={userPlan}
+userPlan={userPlan}
+setScreen={setScreen}
 />
 )}
+ {screen === "privacy" && <PrivacyPolicy setScreen={setScreen} />}
+
+{screen === "terms" && <TermsPage setScreen={setScreen} />}       
       </main>
     </div>
   );
@@ -1175,7 +1179,7 @@ Save Profile
 )
 }
 
-function SettingsScreen({ filters, setFilters, userPlan }) {
+function SettingsScreen({ filters, setFilters, userPlan, setScreen })
   const isPremium = userPlan === "plus" || userPlan === "elite";
   return <section>
     <h1>Settings & Safety</h1>
@@ -1208,7 +1212,13 @@ onChange={(e) =>
 setFilters({ ...filters, city: e.target.value })
 }
 />
-      
+<button onClick={() => setScreen("privacy")}>
+Privacy Policy
+</button>
+
+<button onClick={() => setScreen("terms")}>
+Terms of Service
+</button>      
     </div>
   </section>
 }
