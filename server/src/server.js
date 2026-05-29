@@ -188,7 +188,28 @@ console.log("Supabase updated profile:", data);
 }
 }
 }
+if (event.type === "customer.subscription.deleted") {
+const subscription = event.data.object;
 
+const customer = await stripe.customers.retrieve(subscription.customer);
+const customerEmail = customer.email;
+
+console.log("Subscription ended for:", customerEmail);
+
+if (customerEmail) {
+const { data, error } = await supabase
+.from("profiles")
+.update({ plan: "free" })
+.eq("email", customerEmail)
+.select();
+
+if (error) {
+console.log("Supabase downgrade error:", error);
+} else {
+console.log("Supabase downgraded profile:", data);
+}
+}
+}
 res.json({ received: true });
 });
 
