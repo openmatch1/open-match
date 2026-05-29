@@ -1064,13 +1064,17 @@ Upgrade to Elite
 </section>
 );
 }
+  return (
+    <section>
     <h1>AI Dating Coach</h1>
     <p>Get help with texting, profiles, red flags, date ideas, and confidence.</p>
     <textarea value={coachText} onChange={e=>setCoachText(e.target.value)} placeholder="Example: What should I say after matching with someone who seems very different from me?" />
     <button className="primary" onClick={generateCoach}>Generate Advice</button>
     {coachAnswer && <div className="coachAnswer">{coachAnswer}</div>}
   </section>
+);
 }
+
 
 function Premium({ userPlan, user }) {
 async function manageSubscription() {
