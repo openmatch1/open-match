@@ -406,6 +406,7 @@ supabase.removeChannel(channel);
 }, [selectedMatch, user?.email]);
   const [coachText, setCoachText] = useState("");
   const [coachAnswer, setCoachAnswer] = useState("");
+  const [lastProfileIndex, setLastProfileIndex] = useState(null);
 
 async function like(superLike=false) {
 if (
@@ -467,7 +468,7 @@ liker_email: myEmail,
 liked_email: otherEmail
 }
 ]);
-
+setLastProfileIndex(profileIndex);
 setSwipesToday((s) => s + 1);
   
 setProfileIndex((current) => {
@@ -486,7 +487,7 @@ alert("Daily swipe limit reached. Upgrade to Plus.");
 setScreen("premium");
 return;
 }
-
+setLastProfileIndex(profileIndex);
 setSwipesToday((s) => s + 1);
 setProfileIndex((current) => {
 const next =
@@ -520,7 +521,22 @@ message: chatText
 
 setChatText("");
 }
+function rewind() {
+if (userPlan !== "plus" && userPlan !== "elite") {
+alert("Rewind is only available for Plus and Elite members.");
+setScreen("premium");
+return;
+}
 
+if (lastProfileIndex === null) {
+alert("No profile to rewind.");
+return;
+}
+
+setProfileIndex(lastProfileIndex);
+setProfile(profiles[lastProfileIndex]);
+setLastProfileIndex(null);
+}
 async function generateCoach() {
 if (!coachText.trim()) return;
 
