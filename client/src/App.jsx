@@ -160,11 +160,23 @@ function Feature({ icon, title, text }) {
   return <div className="feature"><div className="featureIcon">{icon}</div><h3>{title}</h3><p>{text}</p></div>;
 }
 
-function Plan({ name, price, perks, hot }) {
-  return <div className={"plan " + (hot ? "hot" : "")}>
-    <h3>{name}</h3><strong>{price}</strong>
-    {perks.map(p => <p key={p}>✓ {p}</p>)}
-  <button
+function Plan({ name, price, perks, hot, userPlan }) {
+const rank = { Free: 0, Plus: 1, Elite: 2 };
+const currentRank = rank[userPlan?.charAt(0).toUpperCase() + userPlan?.slice(1)] ?? 0;
+const planRank = rank[name];
+
+const buttonText =
+currentRank === planRank ? "Current Plan" :
+currentRank > planRank ? "Included" :
+"Upgrade";
+
+return (
+<div className={"plan " + (hot ? "hot" : "")}>
+<h3>{name}</h3>
+<strong>{price}</strong>
+{perks.map(p => <p key={p}>✓ {p}</p>)}
+
+<button
 onClick={() => {
 const link =
 name === "Elite"
@@ -173,13 +185,17 @@ name === "Elite"
 ? "https://buy.stripe.com/9B66oIei03XXgh37aZ9IQ04"
 : "#";
 
-if (link !== "#") window.open(link, "_blank");
+if (buttonText === "Upgrade" && link !== "#") {
+window.open(link, "_blank");
+}
 }}
 >
-{name === "Free" ? "Current Plan" : hot ? "Start Plus" : "Choose"}
-</button> 
-  </div>
+{buttonText}
+</button>
+</div>
+);
 }
+
 
 function AppShell({ user }) {
  const [screen, setScreen] = useState("discover");
