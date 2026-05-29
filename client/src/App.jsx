@@ -1088,7 +1088,8 @@ setAvatar(data.publicUrl);
 
 alert("Photo uploaded");
 };
-console.log("Current user:", user);
+console.log("USER EMAIL:", user?.email);
+console.log("FULL USER:", JSON.stringify(user, null, 2));
 async function saveProfile() {
 const { error } = await supabase
 .from("profiles")
