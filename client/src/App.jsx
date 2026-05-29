@@ -1149,9 +1149,6 @@ return (
 <Plan name="Elite" price="$49/mo" perks={["Boost mode", "See who likes you", "Priority discovery", "Advanced AI coach"]} />
 </div>
 {userPlan === "elite" && (
-<button className="primary" onClick={activateBoost}>
-Activate Boost Mode
-</button>
 )}
 {userPlan !== "free" && (
 <button onClick={manageSubscription}>
