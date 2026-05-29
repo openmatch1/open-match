@@ -1019,6 +1019,7 @@ const [age, setAge] = useState("")
 const [goal, setGoal] = useState("Serious relationship")
 const [bio, setBio] = useState("")
 const [avatar, setAvatar] = useState("")
+const [city, setCity] = useState("") 
  useEffect(() => {
 async function loadProfile() {
 if (!user?.email) return;
@@ -1035,6 +1036,7 @@ return;
 }
 
 setName(data.name || "");
+setCity(data.city || ""); 
 setAge(data.age || "");
 setGoal(data.intent || "Serious relationship");
 setBio(data.bio || "");
@@ -1078,7 +1080,7 @@ name,
 age,
 bio,
 photo: avatar,
-city: "Orlando",
+city,
 email: user?.email,
 interests: ["business", "fitness", "travel"]
 }
@@ -1127,7 +1129,12 @@ onChange={(e) => setName(e.target.value)}
 value={age}
 onChange={(e) => setAge(e.target.value)}
 />
-
+<label>City / State</label>
+<input
+value={city}
+onChange={(e) => setCity(e.target.value)}
+placeholder="City, State"
+/>
 <label>Relationship Goal</label>
 <select
 value={goal}
