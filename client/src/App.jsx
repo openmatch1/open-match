@@ -291,14 +291,15 @@ setUserPlan(currentUser.plan);
 }
 const now = new Date();
 
-const sorted = filtered.sort((a, b) => {
-const aBoosted = a.boost_until && new Date(a.boost_until) > now;
-const bBoosted = b.boost_until && new Date(b.boost_until) > now;
+const sorted = [...filtered].sort((a, b) => {
+const aBoosted = a.boost_until && new Date(a.boost_until).getTime() > now.getTime();
+const bBoosted = b.boost_until && new Date(b.boost_until).getTime() > now.getTime();
 
 if (aBoosted && !bBoosted) return -1;
 if (!aBoosted && bBoosted) return 1;
 return 0;
 });
+
 
 setProfiles(sorted);
 setProfile(sorted[0]);
