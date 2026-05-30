@@ -722,11 +722,12 @@ matches={matches}
         {screen === "premium" && <Premium userPlan={userPlan} user={user} />}
         {screen === "profile" && <MyProfile user={user} />}
         {screen === "settings" && (
-<SettingsScreen
+SettingsScreen
 filters={filters}
 setFilters={setFilters}
 userPlan={userPlan}
 setScreen={setScreen}
+user={user}
 />
 )}
  {screen === "privacy" && <PrivacyPolicy setScreen={setScreen} />}
@@ -1264,7 +1265,7 @@ Save Profile
 )
 }
 
-function SettingsScreen({ filters, setFilters, userPlan, setScreen }) {
+function SettingsScreen({ filters, setFilters, userPlan, setScreen, user }) {
   const isPremium = userPlan === "plus" || userPlan === "elite";
   return <section>
     <h1>Settings & Safety</h1>
@@ -1305,14 +1306,27 @@ Privacy Policy
  Terms of Service
  </button>
 
- <button
- className="save-btn"
- onClick={() => {
- alert("Preferences Saved");
- }}
- >
- Save Preferences
- </button>
+<button
+className="save-btn"
+onClick={async () => {
+const { error } = await supabase
+.from("profiles")
+.update({
+min_age: filters.minAge,
+max_age: filters.maxAge,
+city: filters.city
+})
+.eq("email", user.email);
+
+if (error) {
+alert(error.message);
+} else {
+alert("Preferences Saved");
+}
+}}
+>
+Save Preferences
+</button>
 
  </div>
 </section>
