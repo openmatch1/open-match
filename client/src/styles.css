@@ -2023,7 +2023,8 @@ width: 100%;
 height: 420px;
 
 .brandLogo {
-width: 165px;
+width: 220px;
+max-width: 35vw;
 height: auto;
 display: block;
 }
