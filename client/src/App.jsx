@@ -1301,11 +1301,21 @@ setFilters({ ...filters, city: e.target.value })
 Privacy Policy
 </button>
 
-<button onClick={() => setScreen("terms")}>
-Terms of Service
-</button>      
-    </div>
-  </section>
+ <button onClick={() => setScreen("terms")}>
+ Terms of Service
+ </button>
+
+ <button
+ className="save-btn"
+ onClick={() => {
+ alert("Preferences Saved");
+ }}
+ >
+ Save Preferences
+ </button>
+
+ </div>
+</section>
 }
 function PrivacyPolicy({ setScreen }) {
 return (
