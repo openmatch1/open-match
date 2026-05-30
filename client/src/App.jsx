@@ -21,16 +21,15 @@ city: “Orlando, FL”,
 distance: “8 miles away”,
 vibe: “Adventurous, funny, loyal”,
 intent: “Long-term”,
-photos: [“https://images.unsplash.com/photo-1494790108377-be9c29b29330”],
+photos: [
+“https://images.unsplash.com/photo-1494790108377-be9c29b29330”
+],
 bio: “Coffee addict and beach lover looking for something real.”,
 interests: [“Travel”, “Fitness”, “Food”],
 openChemistry: 91,
 sharedInterestScore: 78,
 aiReason: “Strong compatibility through lifestyle and relationship goals.”
 },
-
-
-
 {
 id: “p2”,
 name: “Sophia”,
@@ -39,16 +38,15 @@ city: “Tampa, FL”,
 distance: “15 miles away”,
 vibe: “Creative, caring, ambitious”,
 intent: “Relationship”,
-photos: [“https://images.unsplash.com/photo-1488426862026-3ee34a7d66df”],
+photos: [
+“https://images.unsplash.com/photo-1488426862026-3ee34a7d66df”
+],
 bio: “Always planning my next adventure and looking for a genuine connection.”,
 interests: [“Art”, “Travel”, “Dogs”],
 openChemistry: 88,
 sharedInterestScore: 73,
 aiReason: “Shared interests and compatible communication styles.”
 },
-
-
-
 {
 id: “p3”,
 name: “Noah”,
@@ -57,16 +55,15 @@ city: “Jacksonville, FL”,
 distance: “12 miles away”,
 vibe: “Driven, outgoing, funny”,
 intent: “Long-term”,
-photos: [“https://images.unsplash.com/photo-1500648767791-00dcc994a43e”],
+photos: [
+“https://images.unsplash.com/photo-1500648767791-00dcc994a43e”
+],
 bio: “Business owner who loves fitness and meeting new people.”,
 interests: [“Business”, “Gym”, “Travel”],
 openChemistry: 86,
 sharedInterestScore: 69,
 aiReason: “Strong personality match and similar ambitions.”
 },
-
-
-
 {
 id: “p4”,
 name: “Ava”,
@@ -75,16 +72,15 @@ city: “Miami, FL”,
 distance: “20 miles away”,
 vibe: “Energetic, social, adventurous”,
 intent: “Dating”,
-photos: [“https://images.unsplash.com/photo-1517841905240-472988babdf9”],
+photos: [
+“https://images.unsplash.com/photo-1517841905240-472988babdf9”
+],
 bio: “Looking for someone who can keep up with my energy.”,
 interests: [“Travel”, “Music”, “Fitness”],
 openChemistry: 90,
 sharedInterestScore: 75,
 aiReason: “High compatibility in lifestyle and interests.”
 },
-
-
-
 {
 id: “p5”,
 name: “Liam”,
@@ -93,16 +89,15 @@ city: “Ocala, FL”,
 distance: “6 miles away”,
 vibe: “Relaxed, confident, loyal”,
 intent: “Relationship”,
-photos: [“https://images.unsplash.com/photo-1506794778202-cad84cf45f1d”],
+photos: [
+“https://images.unsplash.com/photo-1506794778202-cad84cf45f1d”
+],
 bio: “Enjoys fishing, traveling, and spending time outdoors.”,
 interests: [“Fishing”, “Outdoors”, “Travel”],
 openChemistry: 84,
 sharedInterestScore: 67,
 aiReason: “Compatible values and shared outdoor interests.”
 },
-
-
-
 {
 id: “p6”,
 name: “Olivia”,
@@ -111,7 +106,9 @@ city: “Fort Lauderdale, FL”,
 distance: “18 miles away”,
 vibe: “Elegant, funny, ambitious”,
 intent: “Long-term”,
-photos: [“https://images.unsplash.com/photo-1438761681033-6461ffad8d80”],
+photos: [
+“https://images.unsplash.com/photo-1438761681033-6461ffad8d80”
+],
 bio: “Love good food, good conversations, and good people.”,
 interests: [“Food”, “Travel”, “Business”],
 openChemistry: 92,
@@ -119,6 +116,7 @@ sharedInterestScore: 81,
 aiReason: “Exceptional compatibility across multiple categories.”
 }
 ];
+
 
 
  
