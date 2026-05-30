@@ -695,14 +695,14 @@ position: "fixed",
 left: 0,
 right: 0,
 bottom: 0,
-height: "95px",
+height: "80px",
 background: "#070711",
 borderTop: "1px solid rgba(255,255,255,0.12)",
 display: "flex",
 justifyContent: "space-around",
 alignItems: "center",
 zIndex: 999999,
-paddingBottom: "18px"
+paddingBottom: "0px"
 }}
 >
 {[
