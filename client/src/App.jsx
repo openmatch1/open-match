@@ -722,7 +722,7 @@ matches={matches}
         {screen === "premium" && <Premium userPlan={userPlan} user={user} />}
         {screen === "profile" && <MyProfile user={user} />}
         {screen === "settings" && (
-SettingsScreen
+<SettingsScreen
 filters={filters}
 setFilters={setFilters}
 userPlan={userPlan}
