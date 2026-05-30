@@ -118,7 +118,10 @@ function Landing({ enter }) {
   return (
     <main className="landing">
       <nav className="topnav">
-        <div className="brand"><div className="ring"></div><span>Open Match</span></div>
+        <div className="brand">
+<span className="brandLogoText">Open Match</span>
+<span className="brandHeart">♥</span>
+</div>
         <div className="navlinks">
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
