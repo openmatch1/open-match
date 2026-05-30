@@ -727,9 +727,7 @@ setScreen={setScreen}
 </div>
 
 </main>
-      
-
-  );
+);
 }
 function Onboarding({ user, onboarding, setOnboarding, finish }) {
 return (
