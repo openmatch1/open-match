@@ -119,7 +119,12 @@ function Landing({ enter }) {
     <main className="landing">
       <nav className="topnav">
      <div className="brand">
-<img src="/openmatch-logo.png" alt="Open Match" className="brandLogo" />
+<img
+src="/openmatch-logo.png"
+alt="Open Match"
+className="brandLogo"
+style={{ width: "80px" }}
+/>
 </div>  
         <div className="navlinks">
           <a href="#features">Features</a>
