@@ -335,8 +335,10 @@ setUserPlan(currentUser.plan);
 }
 
 
-setProfiles(filtered);
-setProfile(filtered[0]);
+const allProfiles = [...filtered, ...seedProfiles];
+
+setProfiles(allProfiles);
+setProfile(allProfiles[0]);
 }
 }
 
