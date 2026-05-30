@@ -2035,54 +2035,29 @@ display: block;
 }
 
 
-<div
-style={{
-position: "fixed",
-left: 0,
-right: 0,
-bottom: 0,
-height: "95px",
-background: "#070711",
-borderTop: "1px solid rgba(255,255,255,0.12)",
-display: "flex",
-justifyContent: "space-around",
-alignItems: "center",
-zIndex: 999999,
-paddingBottom: "18px"
-}}
->
-{[
-["discover", "🔥", "Discover"],
-["matches", "❤️", "Matches"],
-["chat", "💬", "Chat"],
-["coach", "🧠", "Coach"],
-["premium", "👑", "Premium"],
-["profile", "👤", "Profile"],
-["settings", "⚙️", "Settings"]
-].map(([key, icon, label]) => (
-<button
-key={key}
-onClick={() => setScreen(key)}
-style={{
-background: "transparent",
-backgroundImage: "none",
-border: "none",
-boxShadow: "none",
-borderRadius: 0,
-padding: 0,
-color: screen === key ? "#ff4fd8" : "white",
-flex: 1,
-display: "flex",
-flexDirection: "column",
-alignItems: "center",
-justifyContent: "center",
-gap: "6px",
-fontSize: "12px",
-fontWeight: 600
-}}
->
-<span style={{ fontSize: "26px", lineHeight: 1 }}>{icon}</span>
-<span>{label}</span>
-</button>
-))}
-</div>
+.bottom-tabs {
+position: fixed;
+left: 0;
+right: 0;
+bottom: 0;
+height: 95px;
+background: #070711;
+border-top: 1px solid rgba(255,255,255,0.12);
+display: flex;
+justify-content: space-around;
+align-items: center;
+z-index: 99999;
+padding: 8px 4px calc(12px + env(safe-area-inset-bottom));
+}
+
+.bottom-tabs button {
+background: transparent !important;
+border: none !important;
+box-shadow: none !important;
+border-radius: 0 !important;
+color: white;
+}
+
+main {
+padding-bottom: 115px;
+}
