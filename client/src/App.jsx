@@ -687,7 +687,16 @@ setScreen={setScreen}
 )}
  {screen === "privacy" && <PrivacyPolicy setScreen={setScreen} />}
 
-{screen === "terms" && <TermsPage setScreen={setScreen} />}       
+{screen === "terms" && <TermsPage setScreen={setScreen} />}
+       <div className="mobile-bottom-nav">
+<button onClick={() => setScreen("discover")}>🔥</button>
+<button onClick={() => setScreen("matches")}>❤️</button>
+<button onClick={() => setScreen("chat")}>💬</button>
+<button onClick={() => setScreen("coach")}>🧠</button>
+<button onClick={() => setScreen("premium")}>👑</button>
+<button onClick={() => setScreen("profile")}>👤</button>
+<button onClick={() => setScreen("settings")}>⚙️</button>
+</div> 
       </main>
     </div>
   );
