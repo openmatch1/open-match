@@ -2039,26 +2039,32 @@ display: block;
 display: flex;
 justify-content: space-around;
 align-items: center;
-gap: 8px;
-padding: 10px 6px;
-margin: 10px 0 18px;
-background: rgba(255,255,255,0.04);
-border-radius: 18px;
+padding: 10px 0;
+margin-bottom: 15px;
+border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .top-tabs button {
 background: transparent !important;
 border: none !important;
 box-shadow: none !important;
-color: white !important;
+border-radius: 0 !important;
+color: white;
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: center;
 gap: 4px;
 font-size: 11px;
-padding: 0 !important;
+padding: 0;
+min-width: 0;
 }
 
-.top-tabs button span {
-font-size: 11px;
+.top-tabs .tab-icon {
+font-size: 24px;
+line-height: 1;
+}
+
+.top-tabs button.active {
+color: #ff4fd8;
 }
