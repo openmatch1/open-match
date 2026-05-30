@@ -638,14 +638,42 @@ finish={() => setScreen("discover")}
 />
 )}
  <div className="top-tabs">
-<button onClick={() => setScreen("discover")}>🔥<span>Discover</span></button>
-<button onClick={() => setScreen("matches")}>❤️<span>Matches</span></button>
-<button onClick={() => setScreen("chat")}>💬<span>Chat</span></button>
-<button onClick={() => setScreen("coach")}>🧠<span>Coach</span></button>
-<button onClick={() => setScreen("premium")}>👑<span>Premium</span></button>
-<button onClick={() => setScreen("profile")}>👤<span>Profile</span></button>
-<button onClick={() => setScreen("settings")}>⚙️<span>Settings</span></button>
-</div>      
+<button className={screen === "discover" ? "active" : ""} onClick={() => setScreen("discover")}>
+<span className="tab-icon">🔥</span>
+<span>Discover</span>
+</button>
+
+<button className={screen === "matches" ? "active" : ""} onClick={() => setScreen("matches")}>
+<span className="tab-icon">❤️</span>
+<span>Matches</span>
+</button>
+
+<button className={screen === "chat" ? "active" : ""} onClick={() => setScreen("chat")}>
+<span className="tab-icon">💬</span>
+<span>Chat</span>
+</button>
+
+<button className={screen === "coach" ? "active" : ""} onClick={() => setScreen("coach")}>
+<span className="tab-icon">🧠</span>
+<span>Coach</span>
+</button>
+
+<button className={screen === "premium" ? "active" : ""} onClick={() => setScreen("premium")}>
+<span className="tab-icon">👑</span>
+<span>Premium</span>
+</button>
+
+<button className={screen === "profile" ? "active" : ""} onClick={() => setScreen("profile")}>
+<span className="tab-icon">👤</span>
+<span>Profile</span>
+</button>
+
+<button className={screen === "settings" ? "active" : ""} onClick={() => setScreen("settings")}>
+<span className="tab-icon">⚙️</span>
+<span>Settings</span>
+</button>
+</div>
+   
   {screen === "discover" && (
 <Discover
 profile={profile}
