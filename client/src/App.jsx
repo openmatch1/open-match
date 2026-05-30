@@ -689,42 +689,58 @@ setScreen={setScreen}
 
 {screen === "terms" && <TermsPage setScreen={setScreen} />} 
 
-<div className="bottom-tabs">
-<button className={screen === "discover" ? "active" : ""} onClick={() => setScreen("discover")}>
-<span className="tab-icon">🔥</span>
-<span>Discover</span>
+<div
+style={{
+position: "fixed",
+left: 0,
+right: 0,
+bottom: 0,
+height: "95px",
+background: "#070711",
+borderTop: "1px solid rgba(255,255,255,0.12)",
+display: "flex",
+justifyContent: "space-around",
+alignItems: "center",
+zIndex: 999999,
+paddingBottom: "18px"
+}}
+>
+{[
+["discover", "🔥", "Discover"],
+["matches", "❤️", "Matches"],
+["chat", "💬", "Chat"],
+["coach", "🧠", "Coach"],
+["premium", "👑", "Premium"],
+["profile", "👤", "Profile"],
+["settings", "⚙️", "Settings"]
+].map(([key, icon, label]) => (
+<button
+key={key}
+onClick={() => setScreen(key)}
+style={{
+background: "transparent",
+backgroundImage: "none",
+border: "none",
+boxShadow: "none",
+borderRadius: 0,
+padding: 0,
+color: screen === key ? "#ff4fd8" : "white",
+flex: 1,
+display: "flex",
+flexDirection: "column",
+alignItems: "center",
+justifyContent: "center",
+gap: "6px",
+fontSize: "12px",
+fontWeight: 600
+}}
+>
+<span style={{ fontSize: "26px", lineHeight: 1 }}>{icon}</span>
+<span>{label}</span>
 </button>
-
-<button className={screen === "matches" ? "active" : ""} onClick={() => setScreen("matches")}>
-<span className="tab-icon">❤️</span>
-<span>Matches</span>
-</button>
-
-<button className={screen === "chat" ? "active" : ""} onClick={() => setScreen("chat")}>
-<span className="tab-icon">💬</span>
-<span>Chat</span>
-</button>
-
-<button className={screen === "coach" ? "active" : ""} onClick={() => setScreen("coach")}>
-<span className="tab-icon">🧠</span>
-<span>Coach</span>
-</button>
-
-<button className={screen === "premium" ? "active" : ""} onClick={() => setScreen("premium")}>
-<span className="tab-icon">👑</span>
-<span>Premium</span>
-</button>
-
-<button className={screen === "profile" ? "active" : ""} onClick={() => setScreen("profile")}>
-<span className="tab-icon">👤</span>
-<span>Profile</span>
-</button>
-
-<button className={screen === "settings" ? "active" : ""} onClick={() => setScreen("settings")}>
-<span className="tab-icon">⚙️</span>
-<span>Settings</span>
-</button>
+))}
 </div>
+
 
 
 </main>
