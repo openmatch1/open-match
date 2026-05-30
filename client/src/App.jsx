@@ -688,7 +688,8 @@ setScreen={setScreen}
  {screen === "privacy" && <PrivacyPolicy setScreen={setScreen} />}
 
 {screen === "terms" && <TermsPage setScreen={setScreen} />}
-    <div className="bottom-tabs">
+
+<div className="bottom-tabs">
 <button className={screen === "discover" ? "active" : ""} onClick={() => setScreen("discover")}>
 <span className="tab-icon">🔥</span>
 <span>Discover</span>
@@ -725,9 +726,8 @@ setScreen={setScreen}
 </button>
 </div>
 
-  
-      </main>
-    </div>
+</main>
+
   );
 }
 function Onboarding({ user, onboarding, setOnboarding, finish }) {
