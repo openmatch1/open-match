@@ -637,57 +637,15 @@ setOnboarding={setOnboarding}
 finish={() => setScreen("discover")}
 />
 )}
- <div
-style={{
-position: "fixed",
-left: 0,
-right: 0,
-bottom: 0,
-height: "80px",
-background: "#070711",
-borderTop: "1px solid rgba(255,255,255,0.12)",
-display: "flex",
-justifyContent: "space-around",
-alignItems: "center",
-zIndex: 999999,
-paddingBottom: "0px"
-}}
->
-{[
-["discover", "🔥", "Discover"],
-["matches", "❤️", "Matches"],
-["chat", "💬", "Chat"],
-["coach", "🧠", "Coach"],
-["premium", "👑", "Premium"],
-["profile", "👤", "Profile"],
-["settings", "⚙️", "Settings"]
-].map(([key, icon, label]) => (
-<button
-key={key}
-onClick={() => setScreen(key)}
-style={{
-background: "transparent",
-backgroundImage: "none",
-border: "none",
-boxShadow: "none",
-borderRadius: 0,
-padding: 0,
-color: screen === key ? "#ff4fd8" : "white",
-flex: 1,
-display: "flex",
-flexDirection: "column",
-alignItems: "center",
-justifyContent: "center",
-gap: "6px",
-fontSize: "12px",
-fontWeight: 600
-}}
->
-<span style={{ fontSize: "26px", lineHeight: 1 }}>{icon}</span>
-<span>{label}</span>
-</button>
-))}
-</div>       
+ <div className="top-tabs">
+<button onClick={() => setScreen("discover")}>🔥<span>Discover</span></button>
+<button onClick={() => setScreen("matches")}>❤️<span>Matches</span></button>
+<button onClick={() => setScreen("chat")}>💬<span>Chat</span></button>
+<button onClick={() => setScreen("coach")}>🧠<span>Coach</span></button>
+<button onClick={() => setScreen("premium")}>👑<span>Premium</span></button>
+<button onClick={() => setScreen("profile")}>👤<span>Profile</span></button>
+<button onClick={() => setScreen("settings")}>⚙️<span>Settings</span></button>
+</div>      
   {screen === "discover" && (
 <Discover
 profile={profile}
