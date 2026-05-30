@@ -688,42 +688,43 @@ setScreen={setScreen}
  {screen === "privacy" && <PrivacyPolicy setScreen={setScreen} />}
 
 {screen === "terms" && <TermsPage setScreen={setScreen} />}
-     <div className="mobile-bottom-nav">
-<button onClick={() => setScreen("discover")}>
-🔥
+    <div className="bottom-tabs">
+<button className={screen === "discover" ? "active" : ""} onClick={() => setScreen("discover")}>
+<span className="tab-icon">🔥</span>
 <span>Discover</span>
 </button>
 
-<button onClick={() => setScreen("matches")}>
-❤️
+<button className={screen === "matches" ? "active" : ""} onClick={() => setScreen("matches")}>
+<span className="tab-icon">❤️</span>
 <span>Matches</span>
 </button>
 
-<button onClick={() => setScreen("chat")}>
-💬
+<button className={screen === "chat" ? "active" : ""} onClick={() => setScreen("chat")}>
+<span className="tab-icon">💬</span>
 <span>Chat</span>
 </button>
 
-<button onClick={() => setScreen("coach")}>
-🧠
+<button className={screen === "coach" ? "active" : ""} onClick={() => setScreen("coach")}>
+<span className="tab-icon">🧠</span>
 <span>Coach</span>
 </button>
 
-<button onClick={() => setScreen("premium")}>
-👑
+<button className={screen === "premium" ? "active" : ""} onClick={() => setScreen("premium")}>
+<span className="tab-icon">👑</span>
 <span>Premium</span>
 </button>
 
-<button onClick={() => setScreen("profile")}>
-👤
+<button className={screen === "profile" ? "active" : ""} onClick={() => setScreen("profile")}>
+<span className="tab-icon">👤</span>
 <span>Profile</span>
 </button>
 
-<button onClick={() => setScreen("settings")}>
-⚙️
+<button className={screen === "settings" ? "active" : ""} onClick={() => setScreen("settings")}>
+<span className="tab-icon">⚙️</span>
 <span>Settings</span>
 </button>
 </div>
+
   
       </main>
     </div>
