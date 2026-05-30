@@ -2035,36 +2035,43 @@ display: block;
 }
 
 
-.top-tabs {
+.top-tabs-clean {
 display: flex;
 justify-content: space-around;
 align-items: center;
-padding: 10px 0;
-margin-bottom: 15px;
-border-bottom: 1px solid rgba(255,255,255,0.08);
+padding: 12px 0 10px;
+margin: 0 0 18px;
+border-bottom: 1px solid rgba(255,255,255,0.12);
+background: transparent;
 }
 
-.top-tabs button {
+.top-tabs-clean button {
 background: transparent !important;
+background-image: none !important;
 border: none !important;
 box-shadow: none !important;
 border-radius: 0 !important;
-color: white;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 4px;
-font-size: 11px;
-padding: 0;
-min-width: 0;
+padding: 0 !important;
+min-width: 0 !important;
+color: white !important;
+display: flex !important;
+flex-direction: column !important;
+align-items: center !important;
+gap: 5px !important;
+font-size: 12px !important;
+font-weight: 600 !important;
 }
 
-.top-tabs .tab-icon {
-font-size: 24px;
+.top-tabs-clean button span {
+font-size: 25px;
 line-height: 1;
 }
 
-.top-tabs button.active {
-color: #ff4fd8;
+.top-tabs-clean button small {
+font-size: 12px;
+}
+
+.top-tabs-clean button.active,
+.top-tabs-clean button.active small {
+color: #ff4fd8 !important;
 }
