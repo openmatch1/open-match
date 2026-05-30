@@ -637,40 +637,27 @@ setOnboarding={setOnboarding}
 finish={() => setScreen("discover")}
 />
 )}
- <div className="top-tabs">
+ <div className="top-tabs-clean">
 <button className={screen === "discover" ? "active" : ""} onClick={() => setScreen("discover")}>
-<span className="tab-icon">🔥</span>
-<span>Discover</span>
+<span>🔥</span><small>Discover</small>
 </button>
-
 <button className={screen === "matches" ? "active" : ""} onClick={() => setScreen("matches")}>
-<span className="tab-icon">❤️</span>
-<span>Matches</span>
+<span>❤️</span><small>Matches</small>
 </button>
-
 <button className={screen === "chat" ? "active" : ""} onClick={() => setScreen("chat")}>
-<span className="tab-icon">💬</span>
-<span>Chat</span>
+<span>💬</span><small>Chat</small>
 </button>
-
 <button className={screen === "coach" ? "active" : ""} onClick={() => setScreen("coach")}>
-<span className="tab-icon">🧠</span>
-<span>Coach</span>
+<span>🧠</span><small>Coach</small>
 </button>
-
 <button className={screen === "premium" ? "active" : ""} onClick={() => setScreen("premium")}>
-<span className="tab-icon">👑</span>
-<span>Premium</span>
+<span>👑</span><small>Premium</small>
 </button>
-
 <button className={screen === "profile" ? "active" : ""} onClick={() => setScreen("profile")}>
-<span className="tab-icon">👤</span>
-<span>Profile</span>
+<span>👤</span><small>Profile</small>
 </button>
-
 <button className={screen === "settings" ? "active" : ""} onClick={() => setScreen("settings")}>
-<span className="tab-icon">⚙️</span>
-<span>Settings</span>
+<span>⚙️</span><small>Settings</small>
 </button>
 </div>
    
