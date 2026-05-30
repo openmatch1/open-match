@@ -2033,3 +2033,27 @@ width: 145px;
 height: auto;
 display: block;
 }
+.mobile-bottom-nav {
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+display: flex;
+justify-content: space-around;
+padding: 12px;
+background: #0b0b14;
+border-top: 1px solid rgba(255,255,255,.15);
+z-index: 9999;
+}
+
+.mobile-bottom-nav button {
+background: none;
+border: none;
+color: white;
+font-size: 22px;
+cursor: pointer;
+}
+
+main {
+padding-bottom: 80px;
+}
