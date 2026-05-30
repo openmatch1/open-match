@@ -688,15 +688,43 @@ setScreen={setScreen}
  {screen === "privacy" && <PrivacyPolicy setScreen={setScreen} />}
 
 {screen === "terms" && <TermsPage setScreen={setScreen} />}
-       <div className="mobile-bottom-nav">
-<button onClick={() => setScreen("discover")}>🔥</button>
-<button onClick={() => setScreen("matches")}>❤️</button>
-<button onClick={() => setScreen("chat")}>💬</button>
-<button onClick={() => setScreen("coach")}>🧠</button>
-<button onClick={() => setScreen("premium")}>👑</button>
-<button onClick={() => setScreen("profile")}>👤</button>
-<button onClick={() => setScreen("settings")}>⚙️</button>
-</div> 
+     <div className="mobile-bottom-nav">
+<button onClick={() => setScreen("discover")}>
+🔥
+<span>Discover</span>
+</button>
+
+<button onClick={() => setScreen("matches")}>
+❤️
+<span>Matches</span>
+</button>
+
+<button onClick={() => setScreen("chat")}>
+💬
+<span>Chat</span>
+</button>
+
+<button onClick={() => setScreen("coach")}>
+🧠
+<span>Coach</span>
+</button>
+
+<button onClick={() => setScreen("premium")}>
+👑
+<span>Premium</span>
+</button>
+
+<button onClick={() => setScreen("profile")}>
+👤
+<span>Profile</span>
+</button>
+
+<button onClick={() => setScreen("settings")}>
+⚙️
+<span>Settings</span>
+</button>
+</div>
+  
       </main>
     </div>
   );
