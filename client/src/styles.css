@@ -2033,49 +2033,7 @@ width: 145px;
 height: auto;
 display: block;
 }
-.mobile-bottom-nav {
-position: fixed;
-bottom: 0;
-left: 0;
-right: 0;
-display: flex;
-justify-content: space-around;
-padding: 12px;
-background: #0b0b14;
-border-top: 1px solid rgba(255,255,255,.15);
-z-index: 9999;
-}
 
-.mobile-bottom-nav {
-position: fixed;
-bottom: 0;
-left: 0;
-right: 0;
-
-display: flex;
-justify-content: space-around;
-align-items: center;
-
-background: #0b0b14;
-border-top: 1px solid rgba(255,255,255,.1);
-
-padding: 12px 8px;
-z-index: 9999;
-}
-
-.mobile-bottom-nav {
-position: fixed;
-bottom: 0;
-left: 0;
-right: 0;
-height: 75px;
-background: #0b0b14;
-border-top: 1px solid rgba(255,255,255,.12);
-display: flex;
-justify-content: space-around;
-align-items: center;
-z-index: 9999;
-}
 
 .bottom-tabs {
 position: fixed;
