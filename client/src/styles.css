@@ -2035,49 +2035,54 @@ display: block;
 }
 
 
-.bottom-tabs {
-position: fixed !important;
-left: 0 !important;
-right: 0 !important;
-bottom: 0 !important;
-height: 95px !important;
-background: #070711 !important;
-border-top: 1px solid rgba(255,255,255,0.12) !important;
-display: flex !important;
-justify-content: space-around !important;
-align-items: center !important;
-z-index: 999999 !important;
-padding: 8px 4px calc(12px + env(safe-area-inset-bottom)) !important;
-}
-
-.bottom-tabs button {
-background: transparent !important;
-background-image: none !important;
-border: none !important;
-box-shadow: none !important;
-border-radius: 0 !important;
-padding: 0 !important;
-min-width: 0 !important;
-height: auto !important;
-color: white !important;
-flex: 1 !important;
-display: flex !important;
-flex-direction: column !important;
-align-items: center !important;
-justify-content: center !important;
-gap: 6px !important;
-font-size: 12px !important;
-}
-
-.bottom-tabs .tab-icon {
-font-size: 26px !important;
-line-height: 1 !important;
-}
-
-.bottom-tabs button.active {
-color: #ff4fd8 !important;
-}
-
-main {
-padding-bottom: 120px !important;
-}
+<div
+style={{
+position: "fixed",
+left: 0,
+right: 0,
+bottom: 0,
+height: "95px",
+background: "#070711",
+borderTop: "1px solid rgba(255,255,255,0.12)",
+display: "flex",
+justifyContent: "space-around",
+alignItems: "center",
+zIndex: 999999,
+paddingBottom: "18px"
+}}
+>
+{[
+["discover", "🔥", "Discover"],
+["matches", "❤️", "Matches"],
+["chat", "💬", "Chat"],
+["coach", "🧠", "Coach"],
+["premium", "👑", "Premium"],
+["profile", "👤", "Profile"],
+["settings", "⚙️", "Settings"]
+].map(([key, icon, label]) => (
+<button
+key={key}
+onClick={() => setScreen(key)}
+style={{
+background: "transparent",
+backgroundImage: "none",
+border: "none",
+boxShadow: "none",
+borderRadius: 0,
+padding: 0,
+color: screen === key ? "#ff4fd8" : "white",
+flex: 1,
+display: "flex",
+flexDirection: "column",
+alignItems: "center",
+justifyContent: "center",
+gap: "6px",
+fontSize: "12px",
+fontWeight: 600
+}}
+>
+<span style={{ fontSize: "26px", lineHeight: 1 }}>{icon}</span>
+<span>{label}</span>
+</button>
+))}
+</div>
