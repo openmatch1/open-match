@@ -118,10 +118,9 @@ function Landing({ enter }) {
   return (
     <main className="landing">
       <nav className="topnav">
-        <div className="brand">
-<span className="brandLogoText">Open Match</span>
-<span className="brandHeart">♥</span>
-</div>
+     <div className="brand">
+<img src="/openmatch-logo.png" alt="Open Match" className="brandLogo" />
+</div>  
         <div className="navlinks">
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
@@ -606,7 +605,9 @@ setCoachAnswer("AI Coach is not connected yet. Check the backend.");
 </div>
 )}
       <aside className="sidebar">
-        <div className="brand sideBrand"><div className="ring"></div><span>Open Match</span></div>
+        <div className="brand sideBrand">
+<img src="/openmatch-logo.png" alt="Open Match" className="sideLogo" />
+</div>
         <SideBtn active={screen==="discover"} onClick={()=>setScreen("discover")} icon={<Flame/>} label="Discover"/>
         <SideBtn active={screen==="matches"} onClick={()=>setScreen("matches")} icon={<Heart/>} label="Matches"/>
         <SideBtn
