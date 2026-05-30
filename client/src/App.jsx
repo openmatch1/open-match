@@ -637,29 +637,49 @@ setOnboarding={setOnboarding}
 finish={() => setScreen("discover")}
 />
 )}
- <div className="top-tabs-clean">
-<button className={screen === "discover" ? "active" : ""} onClick={() => setScreen("discover")}>
-<span>🔥</span><small>Discover</small>
+ <div style={{
+display: "flex",
+justifyContent: "space-around",
+alignItems: "center",
+padding: "12px 0",
+marginBottom: "18px",
+borderBottom: "1px solid rgba(255,255,255,0.12)"
+}}>
+{[
+["discover", "🔥", "Discover"],
+["matches", "❤️", "Matches"],
+["chat", "💬", "Chat"],
+["coach", "🧠", "Coach"],
+["premium", "👑", "Premium"],
+["profile", "👤", "Profile"],
+["settings", "⚙️", "Settings"]
+].map(([key, icon, label]) => (
+<button
+key={key}
+onClick={() => setScreen(key)}
+style={{
+background: "transparent",
+backgroundImage: "none",
+border: "none",
+boxShadow: "none",
+borderRadius: "0",
+padding: "0",
+minWidth: "0",
+color: screen === key ? "#ff4fd8" : "white",
+display: "flex",
+flexDirection: "column",
+alignItems: "center",
+gap: "5px",
+fontSize: "12px",
+fontWeight: "600"
+}}
+>
+<span style={{ fontSize: "25px", lineHeight: 1 }}>{icon}</span>
+<span>{label}</span>
 </button>
-<button className={screen === "matches" ? "active" : ""} onClick={() => setScreen("matches")}>
-<span>❤️</span><small>Matches</small>
-</button>
-<button className={screen === "chat" ? "active" : ""} onClick={() => setScreen("chat")}>
-<span>💬</span><small>Chat</small>
-</button>
-<button className={screen === "coach" ? "active" : ""} onClick={() => setScreen("coach")}>
-<span>🧠</span><small>Coach</small>
-</button>
-<button className={screen === "premium" ? "active" : ""} onClick={() => setScreen("premium")}>
-<span>👑</span><small>Premium</small>
-</button>
-<button className={screen === "profile" ? "active" : ""} onClick={() => setScreen("profile")}>
-<span>👤</span><small>Profile</small>
-</button>
-<button className={screen === "settings" ? "active" : ""} onClick={() => setScreen("settings")}>
-<span>⚙️</span><small>Settings</small>
-</button>
+))}
 </div>
+
    
   {screen === "discover" && (
 <Discover
