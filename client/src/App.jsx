@@ -13,7 +13,7 @@ import.meta.env.VITE_SUPABASE_URL,
 import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
 )
 const seedProfiles = [
- {
+{
 id: “p1”,
 name: “Emma”,
 age: 26,
@@ -28,6 +28,9 @@ openChemistry: 91,
 sharedInterestScore: 78,
 aiReason: “Strong compatibility through lifestyle and relationship goals.”
 },
+
+
+
 {
 id: “p2”,
 name: “Sophia”,
@@ -43,6 +46,9 @@ openChemistry: 88,
 sharedInterestScore: 73,
 aiReason: “Shared interests and compatible communication styles.”
 },
+
+
+
 {
 id: “p3”,
 name: “Noah”,
@@ -58,6 +64,9 @@ openChemistry: 86,
 sharedInterestScore: 69,
 aiReason: “Strong personality match and similar ambitions.”
 },
+
+
+
 {
 id: “p4”,
 name: “Ava”,
@@ -73,6 +82,9 @@ openChemistry: 90,
 sharedInterestScore: 75,
 aiReason: “High compatibility in lifestyle and interests.”
 },
+
+
+
 {
 id: “p5”,
 name: “Liam”,
@@ -88,6 +100,9 @@ openChemistry: 84,
 sharedInterestScore: 67,
 aiReason: “Compatible values and shared outdoor interests.”
 },
+
+
+
 {
 id: “p6”,
 name: “Olivia”,
@@ -103,6 +118,8 @@ openChemistry: 92,
 sharedInterestScore: 81,
 aiReason: “Exceptional compatibility across multiple categories.”
 }
+];
+
 
  
   
